@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🥷 Ninja Rollover Tracker — Degenerate Science Division</title>
+<style>
+  :root{
+    --bg:#070b16; --bg2:#0d1426; --card:#111a30; --card2:#0f1830;
+    --line:#1e2a4a; --txt:#e8eefc; --dim:#8b98b8; --dim2:#5c6884;
+    --green:#22e07a; --red:#ff4d5e; --gold:#ffc531; --blue:#4da3ff; --purple:#b06bff;
+    --mono:"SF Mono","JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:radial-gradient(1200px 600px at 50% -10%,#14224a 0%,var(--bg) 60%) fixed,var(--bg);
+       color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;
+       min-height:100vh;padding-bottom:80px}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 18px}
+  header.hero{text-align:center;padding:44px 18px 8px}
+  .kicker{letter-spacing:4px;font-size:12px;color:var(--dim);text-transform:uppercase}
+  h1{font-size:clamp(30px,6vw,52px);font-weight:900;letter-spacing:-1px;margin:10px 0 6px;
+     background:linear-gradient(90deg,var(--green),var(--blue),var(--purple));
+     -webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{color:var(--dim);font-size:15px;max-width:640px;margin:0 auto;line-height:1.5}
+  .record-pill{display:inline-flex;gap:14px;margin-top:18px;background:rgba(34,224,122,.08);
+     border:1px solid rgba(34,224,122,.35);border-radius:999px;padding:10px 22px;font-family:var(--mono);font-size:14px;flex-wrap:wrap;justify-content:center}
+  .record-pill b{color:var(--green)} .record-pill .pend{color:var(--gold)}
+  nav.tabs{position:sticky;top:0;z-index:10;display:flex;gap:8px;justify-content:center;
+     padding:12px;background:rgba(7,11,22,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);margin-top:22px;flex-wrap:wrap}
+  nav.tabs button{background:var(--card);border:1px solid var(--line);color:var(--dim);border-radius:10px;
+     padding:10px 18px;font-size:14px;font-weight:700;cursor:pointer;transition:.15s}
+  nav.tabs button:hover{color:var(--txt);border-color:var(--blue)}
+  nav.tabs button.active{background:linear-gradient(135deg,#17335f,#0f6a3f);color:#fff;border-color:var(--green)}
+  section.page{display:none;padding-top:26px;animation:fade .25s ease}
+  section.page.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .ticket{border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,var(--card),var(--card2));
+     padding:26px;margin-bottom:26px;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+  .ticket-top{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;justify-content:space-between;margin-bottom:6px}
+  .ticket h2{font-size:24px;letter-spacing:-.5px}
+  .odds-big{font-family:var(--mono);font-size:30px;font-weight:800;color:var(--gold)}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+  .chip{font-family:var(--mono);font-size:12.5px;background:#0a1122;border:1px solid var(--line);
+     border-radius:8px;padding:7px 11px;color:var(--dim)}
+  .chip b{color:var(--txt)}
+  .chip.win{border-color:var(--green);color:var(--green)}
+  .chip.pend{border-color:var(--gold);color:var(--gold)}
+  .verdict{border-radius:12px;padding:16px 18px;margin:16px 0;font-size:15px;line-height:1.55}
+  .verdict.good{background:rgba(34,224,122,.08);border:1px solid rgba(34,224,122,.4)}
+  .verdict.mid{background:rgba(255,197,49,.07);border:1px solid rgba(255,197,49,.4)}
+  .verdict b{color:var(--gold)}
+  .legs{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-top:18px}
+  .leg{border:1px solid var(--line);border-radius:14px;padding:16px;background:#0c1327;position:relative;overflow:hidden}
+  .leg::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--dim2)}
+  .leg.pos::before{background:var(--green)} .leg.neg::before{background:var(--red)} .leg.flat::before{background:var(--gold)}
+  .leg h3{font-size:16px;margin-bottom:2px;padding-right:60px}
+  .leg .match{color:var(--dim);font-size:12.5px;margin-bottom:10px}
+  .leg .tag{position:absolute;top:12px;right:12px;font-family:var(--mono);font-size:13px;font-weight:800}
+  .tag.win{color:var(--green)} .tag.pend{color:var(--gold)}
+  .nums{display:grid;grid-template-columns:1fr 1fr;gap:6px;font-family:var(--mono);font-size:12.5px;margin:10px 0}
+  .nums div{background:#080d1c;border-radius:8px;padding:7px 9px}
+  .nums span{display:block;color:var(--dim2);font-size:10.5px;text-transform:uppercase;letter-spacing:1px}
+  .nums .up{color:var(--green)} .nums .down{color:var(--red)}
+  .dualb{margin:8px 0 4px}
+  .dualb .row{display:flex;align-items:center;gap:8px;margin:5px 0;font-family:var(--mono);font-size:11px;color:var(--dim)}
+  .dualb .lbl{width:64px;flex-shrink:0;color:var(--dim2);text-transform:uppercase;letter-spacing:.5px}
+  .dualb .track{flex:1;height:7px;background:#1a2440;border-radius:4px;overflow:hidden}
+  .dualb .track i{display:block;height:100%;border-radius:4px}
+  .dualb .pct{width:46px;text-align:right;flex-shrink:0}
+  .roast{font-size:13.5px;color:var(--dim);line-height:1.55;border-top:1px dashed var(--line);padding-top:10px;font-style:italic}
+  .roast b{color:var(--txt);font-style:normal}
+  .sgp{background:#0a1a12;border:1px solid rgba(34,224,122,.3);border-radius:12px;padding:14px;margin-top:14px}
+  .sgp h4{font-size:13px;letter-spacing:2px;color:var(--green);margin-bottom:8px}
+  .sgp ul{list-style:none;font-size:13.5px;line-height:1.9;color:var(--dim)}
+  .sgp ul b{color:var(--txt)}
+  table.rank{width:100%;border-collapse:collapse;margin-top:16px;font-size:14px}
+  table.rank th{text-align:left;color:var(--dim2);font-size:11px;text-transform:uppercase;letter-spacing:1.5px;
+     padding:10px;border-bottom:1px solid var(--line)}
+  table.rank td{padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+  table.rank tr:hover td{background:rgba(77,163,255,.05)}
+  .bar{height:8px;border-radius:4px;background:#1a2440;overflow:hidden;min-width:120px}
+  .bar i{display:block;height:100%;border-radius:4px}
+  .mono{font-family:var(--mono)}
+  .pos-t{color:var(--green)} .neg-t{color:var(--red)}
+  .sweat{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:14px}
+  .slot{background:#0c1327;border:1px solid var(--line);border-radius:12px;padding:14px}
+  .slot .t{font-family:var(--mono);color:var(--gold);font-weight:800;font-size:14px;margin-bottom:6px}
+  .slot .g{font-size:13px;color:var(--dim);line-height:1.6}
+  .thermo{background:#0c1327;border:1px solid var(--line);border-radius:12px;padding:16px;margin:16px 0}
+  .thermo h4{font-size:13px;letter-spacing:2px;color:var(--gold);margin-bottom:12px}
+  .thermo .trow{margin:10px 0}
+  .thermo .tlabel{display:flex;justify-content:space-between;font-family:var(--mono);font-size:12.5px;margin-bottom:6px}
+  .thermo .tlabel b{color:var(--txt)}
+  .thermo .track{height:14px;background:#1a2440;border-radius:7px;overflow:hidden}
+  .thermo .track i{display:block;height:100%;border-radius:7px}
+  .kill{margin-top:16px}
+  .kill h3{margin-bottom:4px}
+  .kill .ksub{color:var(--dim2);font-size:13px;margin-bottom:10px}
+  .krow{display:flex;gap:12px;align-items:center;background:#0c1327;border:1px solid var(--line);
+     border-radius:10px;padding:10px 14px;margin:8px 0;font-size:13.5px}
+  .krow .kn{font-family:var(--mono);font-weight:800;color:var(--red);font-size:16px;min-width:30px}
+  .krow .knm{font-weight:700}
+  .krow .kb{margin-left:auto;font-family:var(--mono);color:var(--red);font-size:13px;white-space:nowrap}
+  .krow .kc{width:100%;color:var(--dim);font-size:12.5px;font-style:italic}
+  .math{background:#0c1327;border:1px solid var(--line);border-radius:14px;padding:20px;margin-top:16px}
+  .math h3{margin-bottom:10px;font-size:17px}
+  .math p{color:var(--dim);font-size:14px;line-height:1.7;margin-bottom:10px}
+  .math code{font-family:var(--mono);background:#080d1c;padding:2px 7px;border-radius:6px;color:var(--blue);font-size:13px}
+  .formula{font-family:var(--mono);background:#080d1c;border:1px solid var(--line);border-radius:10px;
+     padding:12px 16px;margin:10px 0;font-size:13.5px;color:var(--txt);overflow-x:auto;white-space:nowrap}
+  footer{margin-top:44px;text-align:center;color:var(--dim2);font-size:12.5px;line-height:1.8;padding:0 20px}
+  .note{background:rgba(176,107,255,.07);border:1px solid rgba(176,107,255,.35);border-radius:12px;
+     padding:14px 18px;margin-top:18px;font-size:13.5px;color:var(--dim);line-height:1.6}
+  @media(max-width:560px){.nums{grid-template-columns:1fr 1fr}.record-pill{font-size:12px;gap:8px;padding:8px 14px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kicker">Gambling Rollover Ninjas · Degenerate Science Division</div>
+  <h1>🥷 NINJA ROLLOVER TRACKER</h1>
+  <p class="sub">Week 2 of the great experiment: every group-chat parlay, graded like a lab experiment and roasted like a group chat. Probabilities estimated, edges measured, dignity not guaranteed.</p>
+  <div class="record-pill"><span>WEEK 2</span><span>TICKETS <b>1–0</b></span><span>PROFIT <b>+$12,278.17</b></span><span class="pend">SUNDAY $100 PENDING</span></div>
+</header>
+
+<nav class="tabs">
+  <button class="active" onclick="show('thu')">Thu 9/17 · The Miracle</button>
+  <button onclick="show('sun')">Sun 9/20 · The Gauntlet</button>
+  <button onclick="show('rank')">Stack Rank</button>
+  <button onclick="show('math')">Math Lab</button>
+</nav>
+
+<!-- ============ THURSDAY ============ -->
+<section id="thu" class="page active">
+  <div class="ticket">
+    <div class="ticket-top">
+      <h2>🎰 Week 2 — Thursday: The Miracle</h2>
+      <div class="odds-big">+24556</div>
+    </div>
+    <div class="meta">
+      <span class="chip">📅 Thu Sep 17 · TNF slate</span>
+      <span class="chip">🎟️ 7-leg NFL player props</span>
+      <span class="chip">💵 Stake <b>$50.00</b></span>
+      <span class="chip">💰 Returned <b>$12,328.17</b></span>
+      <span class="chip win">✅ 7/7 — CASHED</span>
+    </div>
+    <div class="verdict good">
+      <b>The one they'll tell grandkids about.</b> Seven legs, seven hits, $50 turned into twelve grand.
+      Retro-model says this ticket's true price was about <b>+31227</b> — meaning the group got paid <i>worse</i> than fair
+      and still cashed. That's not skill, that's not luck, that's <b>destiny with a DraftKings account</b>.
+      Lesson: keep buying lottery tickets with positive vibes; bankroll management still applies, you animals.
+    </div>
+    <div class="legs">
+
+      <div class="leg pos"><span class="tag win">✅ W</span>
+        <h3>James Cook anytime TD</h3><div class="match">BUF @ DET · TNF</div>
+        <div class="nums"><div><span>Model prob</span>52%</div><div><span>Picker</span>TBD 🥷</div></div>
+        <div class="roast"><b>The table-setter.</b> First leg of the miracle. James Cook found the end zone and the group chat found religion.</div>
+      </div>
+
+      <div class="leg pos"><span class="tag win">✅ W</span>
+        <h3>Sione Vaki 5+ rushing yards</h3><div class="match">DET · TNF — finished with 7 yards</div>
+        <div class="nums"><div><span>Model prob</span>35%</div><div><span>Picker</span>TBD 🥷</div></div>
+        <div class="roast"><b>The sickest leg ever logged.</b> Five. Yards. The bar was on the floor and Sione Vaki pole-vaulted it for 7. This is the leg that separates ninjas from tourists.</div>
+      </div>
+
+      <div class="leg pos"><span class="tag win">✅ W</span>
+        <h3>Sam LaPorta anytime TD</h3><div class="match">DET · TNF</div>
+        <div class="nums"><div><span>Model prob</span>40%</div><div><span>Picker</span>TBD 🥷</div></div>
+        <div class="roast"><b>The "of course" leg.</b> Big man, red zone, touchdown. Some picks require analysis. This one required a pulse.</div>
+      </div>
+
+      <div class="leg pos"><span class="tag win">✅ W</span>
+        <h3>Aidan Hutchinson sack</h3><div class="match">DET · TNF</div>
+        <div class="nums"><div><span>Model prob</span>45%</div><div><span>Picker</span>TBD 🥷</div></div>
+        <div class="roast"><b>Hutch eats. That's the analysis.</b> Elite edge rusher vs. a quarterback holding the ball. The sack was basically direct deposit.</div>
+      </div>
+
+      <div class="leg pos"><span class="tag win">✅ W</span>
+        <h3>Bradley Chubb sack</h3><div class="match">MIA · finished with 1.5 sacks</div>
+        <div class="nums"><div><span>Model prob</span>35%</div><div><span>Picker</span>TBD 🥷</div></div>
+        <div class="roast"><b>1.5 sacks.</b> Bradley Chubb didn't just get home, he moved in, redecorated, and signed a lease. The half-sack is doing a lot of heavy lifting in this parlay's lore.</div>
+      </div>
+
+      <div class="leg pos"><span class="tag win">✅ W</span>
+        <h3>Dalton Kincaid 50+ receiving yards</h3><div class="match">BUF · TNF — finished with 95 yards</div>
+        <div class="nums"><div><span>Model prob</span>48%</div><div><span>Picker</span>TBD 🥷</div></div>
+        <div class="roast"><b>95 yards. Nearly doubled it.</b> Dalton Kincaid heard the doubters (there were none) and responded with the quietest 95 yards in parlay history.</div>
+      </div>
+
+      <div class="leg pos"><span class="tag win">✅ W</span>
+        <h3>Josh Allen over 31.5 rushing yards</h3><div class="match">BUF · TNF — finished with 72 yards</div>
+        <div class="nums"><div><span>Model prob</span>58%</div><div><span>Picker</span>TBD 🥷</div></div>
+        <div class="roast"><b>72 rushing yards.</b> Josh Allen treated the 31.5 line like a rumor. Highest-probability leg on the ticket and he still lapped it twice. Captain material.</div>
+      </div>
+
+    </div>
+    <div class="note">📝 <b>Lab note:</b> per-leg odds weren't logged before kickoff for this one, so edges vs. the board can't be computed retroactively. Model probabilities above are estimates. Going forward: <b>log every leg's odds at bet time</b> or the science suffers. The money, however, did not suffer.</div>
+  </div>
+</section>
+
+<!-- ============ SUNDAY ============ -->
+<section id="sun" class="page">
+  <div class="ticket">
+    <div class="ticket-top">
+      <h2>⚔️ Week 2 — Sunday: The Gauntlet</h2>
+      <div class="odds-big">+26144</div>
+    </div>
+    <div class="meta">
+      <span class="chip">📅 Sun Sep 20</span>
+      <span class="chip">🎟️ 10-leg Same Game Parlay+</span>
+      <span class="chip">💵 Stake <b>$100.00</b></span>
+      <span class="chip">💰 To win <b>$26,244.47</b></span>
+      <span class="chip pend">⏳ PENDING — games today</span>
+    </div>
+    <div class="verdict mid">
+      <b>The science is rude about this ticket:</b> the board prices it at <b>+26144</b> (0.381% implied, about 1-in-262).
+      The degenerate model puts true probability at <b>0.339%</b> (about 1-in-295, fair price ≈ +29444) —
+      for an expected value of <b>−$11.17 per $100</b>. Translation: it's a slightly overpriced lottery ticket.
+      <b>The vibes are unbothered:</b> Thursday's model said 0.32% and it cashed for twelve grand. Ride.
+    </div>
+
+    <div class="thermo">
+      <h4>🌡️ TICKET THERMOMETER — how likely is $26K, really?</h4>
+      <div class="trow">
+        <div class="tlabel"><span>📊 Board price (+26144)</span><b>0.381% · 1-in-262</b></div>
+        <div class="track"><i style="width:76%;background:linear-gradient(90deg,var(--blue),var(--purple))"></i></div>
+      </div>
+      <div class="trow">
+        <div class="tlabel"><span>🥷 Degenerate model</span><b>0.339% · 1-in-295</b></div>
+        <div class="track"><i style="width:68%;background:linear-gradient(90deg,var(--green),var(--blue))"></i></div>
+      </div>
+      <div class="tlabel" style="margin-top:8px"><span style="color:var(--dim2)">The gap between the bars is the alt-line tax. The gap between the model and Thursday's result is why we watch.</span></div>
+    </div>
+
+    <div class="sgp">
+      <h4>🔗 SGP BUNDLE — PHI @ TEN · priced +447 · each piece broken out below</h4>
+      <div style="font-size:13.5px;color:var(--dim);line-height:1.7">The book sells these three as a <b style="color:var(--txt)">+447 bundle</b> (18.28% implied). Estimated standalone prices multiply to ~18.4% — so the bundle is priced about fairly, and the model's 19.8% still gives the trio a combined <b style="color:var(--green)">+1.48pp edge</b>. Saquon's −105 is the real thread price; Hurts/Ward standalone lines are estimates since the book only posted the bundle. 🔬 <b>Correlation note:</b> Saquon TDs and Hurts rush yards are mildly <i>negatively</i> correlated (every tush-push TD is a carry Saquon doesn't get) — decomposing the bundle shows exactly where the value lives: it's all Saquon.</div>
+    </div>
+
+    <div class="legs">
+      <div class="leg pos"><span class="tag pend">⏳</span>
+        <h3>Saquon Barkley anytime TD <span style="font-size:11px;color:var(--dim2)">· SGP piece 1/3</span></h3><div class="match">PHI @ TEN · 1:01 PM ET · −105 (thread price)</div>
+        <div class="dualb">
+          <div class="row"><span class="lbl">Implied</span><div class="track"><i style="width:51%;background:var(--blue)"></i></div><span class="pct">51.2%</span></div>
+          <div class="row"><span class="lbl">Model</span><div class="track"><i style="width:56%;background:var(--green)"></i></div><span class="pct">56.0%</span></div>
+        </div>
+        <div class="nums"><div><span>Edge</span><span class="up">+4.78pp</span></div><div><span>EV / $100</span><span class="up">+$9.33</span></div></div>
+        <div class="roast"><b>The thread-opener — and now the best value on the entire ticket.</b> Paying -105 for the best RB alive to fall into the end zone once is the closest thing to a free square. J Rob kicked off the pick thread "too excited." Correctly.</div>
+      </div>
+
+      <div class="leg neg"><span class="tag pend">⏳</span>
+        <h3>Jalen Hurts 25+ rushing yards <span style="font-size:11px;color:var(--dim2)">· SGP piece 2/3</span></h3><div class="match">PHI @ TEN · 1:01 PM ET · est. −175 standalone</div>
+        <div class="dualb">
+          <div class="row"><span class="lbl">Implied</span><div class="track"><i style="width:64%;background:var(--blue)"></i></div><span class="pct">63.6%</span></div>
+          <div class="row"><span class="lbl">Model</span><div class="track"><i style="width:63%;background:var(--red)"></i></div><span class="pct">63.0%</span></div>
+        </div>
+        <div class="nums"><div><span>Edge</span><span class="down">−0.64pp</span></div><div><span>EV / $100</span><span class="down">−$1.00</span></div></div>
+        <div class="roast"><b>Tush pushes count. Kneel-downs count.</b> 25 yards is three scrambles and a prayer — the chillest piece of the bundle, priced like the book knows it too. Slightly overpriced, deeply relaxing to sweat.</div>
+      </div>
+
+      <div class="leg neg"><span class="tag pend">⏳</span>
+        <h3>Cam Ward under 185.5 passing yards <span style="font-size:11px;color:var(--dim2)">· SGP piece 3/3</span></h3><div class="match">PHI @ TEN · 1:01 PM ET · est. −130 standalone</div>
+        <div class="dualb">
+          <div class="row"><span class="lbl">Implied</span><div class="track"><i style="width:57%;background:var(--blue)"></i></div><span class="pct">56.5%</span></div>
+          <div class="row"><span class="lbl">Model</span><div class="track"><i style="width:56%;background:var(--red)"></i></div><span class="pct">56.0%</span></div>
+        </div>
+        <div class="nums"><div><span>Edge</span><span class="down">−0.52pp</span></div><div><span>EV / $100</span><span class="down">−$0.92</span></div></div>
+        <div class="roast"><b>Betting a rookie's under on the road in Philly.</b> The Eagles' pass rush is the real pick; Cam Ward is just the guy standing in front of it. Priced about right — which, for an under, is a compliment.</div>
+      </div>
+
+      <div class="leg neg"><span class="tag pend">⏳</span>
+        <h3>Tyler Shough over 1.5 pass TDs</h3><div class="match">NO @ BAL · 1:01 PM ET · +195</div>
+        <div class="dualb">
+          <div class="row"><span class="lbl">Implied</span><div class="track"><i style="width:34%;background:var(--blue)"></i></div><span class="pct">33.9%</span></div>
+          <div class="row"><span class="lbl">Model</span><div class="track"><i style="width:30%;background:var(--red)"></i></div><span class="pct">30.0%</span></div>
+        </div>
+        <div class="nums"><div><span>Edge</span><span class="down">−3.90pp</span></div><div><span>EV / $100</span><span class="down">−$11.50</span></div></div>
+        <div class="roast"><b>TWO passing touchdowns. In Baltimore.</b> From a quarterback the group chat spells three different ways. This is the leg that turns $100 into either $26K or a story. Worst edge on the board, best chaos per dollar.</div>
+      </div>
+
+      <div class="leg neg"><span class="tag pend">⏳</span>
+        <h3>KC Concepcion 4+ receptions</h3><div class="match">CLE @ TB · 1:01 PM ET · +110</div>
+        <div class="dualb">
+          <div class="row"><span class="lbl">Implied</span><div class="track"><i style="width:48%;background:var(--blue)"></i></div><span class="pct">47.6%</span></div>
+          <div class="row"><span class="lbl">Model</span><div class="track"><i style="width:44%;background:var(--red)"></i></div><span class="pct">44.0%</span></div>
+        </div>
+        <div class="nums"><div><span>Edge</span><span class="down">−3.62pp</span></div><div><span>EV / $100</span><span class="down">−$7.60</span></div></div>
+        <div class="roast"><b>A rookie wideout needs four catches against Tampa.</b> Somebody woke up and chose chaos. Four catches is nothing until it's the fourth quarter and he has two.</div>
+      </div>
+
+      <div class="leg pos"><span class="tag pend">⏳</span>
+        <h3>Justin Jefferson 60+ receiving yards</h3><div class="match">MIN @ CHI · 1:01 PM ET · −270</div>
+        <div class="dualb">
+          <div class="row"><span class="lbl">Implied</span><div class="track"><i style="width:73%;background:var(--blue)"></i></div><span class="pct">73.0%</span></div>
+          <div class="row"><span class="lbl">Model</span><div class="track"><i style="width:74%;background:var(--green)"></i></div><span class="pct">74.0%</span></div>
+        </div>
+        <div class="nums"><div><span>Edge</span><span class="up">+1.03pp</span></div><div><span>EV / $100</span><span class="up">+$1.41</span></div></div>
+        <div class="roast"><b>The "my bookie lets me bet on gravity" leg.</b> −270 is the sportsbook charging rent for certainty. Jefferson gets 60 yards in his sleep — unfortunate that the Bears will be awake.</div>
+      </div>
+
+      <div class="leg pos"><span class="tag pend">⏳</span>
+        <h3>Bijan Robinson 80+ rushing yards</h3><div class="match">CAR @ ATL · 1:01 PM ET · −138</div>
+        <div class="dualb">
+          <div class="row"><span class="lbl">Implied</span><div class="track"><i style="width:58%;background:var(--blue)"></i></div><span class="pct">58.0%</span></div>
+          <div class="row"><span class="lbl">Model</span><div class="track"><i style="width:60%;background:var(--green)"></i></div><span class="pct">60.0%</span></div>
+        </div>
+        <div class="nums"><div><span>Edge</span><span class="up">+2.02pp</span></div><div><span>EV / $100</span><span class="up">+$3.48</span></div></div>
+        <div class="roast"><b>Best edge on the ticket.</b> Bijan vs. Carolina, whose run defense is a suggestion, not a unit. The crown jewel of the Gauntlet — handle with care.</div>
+      </div>
+
+      <div class="leg neg"><span class="tag pend">⏳</span>
+        <h3>Denver Broncos +3.5 (alt spread)</h3><div class="match">JAX @ DEN · 4:06 PM ET · −280</div>
+        <div class="dualb">
+          <div class="row"><span class="lbl">Implied</span><div class="track"><i style="width:74%;background:var(--blue)"></i></div><span class="pct">73.7%</span></div>
+          <div class="row"><span class="lbl">Model</span><div class="track"><i style="width:72%;background:var(--red)"></i></div><span class="pct">72.0%</span></div>
+        </div>
+        <div class="nums"><div><span>Edge</span><span class="down">−1.68pp</span></div><div><span>EV / $100</span><span class="down">−$2.29</span></div></div>
+        <div class="roast"><b>Paying −280 for 3.5 points of garbage-time insurance.</b> Denver can LOSE and this still cashes. That's not betting, that's buying feelings. Expensive feelings.</div>
+      </div>
+
+      <div class="leg neg"><span class="tag pend">⏳</span>
+        <h3>George Pickens 60+ receiving yards</h3><div class="match">WAS @ DAL · 4:26 PM ET · −152</div>
+        <div class="dualb">
+          <div class="row"><span class="lbl">Implied</span><div class="track"><i style="width:60%;background:var(--blue)"></i></div><span class="pct">60.3%</span></div>
+          <div class="row"><span class="lbl">Model</span><div class="track"><i style="width:58%;background:var(--red)"></i></div><span class="pct">58.0%</span></div>
+        </div>
+        <div class="nums"><div><span>Edge</span><span class="down">−2.32pp</span></div><div><span>EV / $100</span><span class="down">−$3.84</span></div></div>
+        <div class="roast"><b>George Pickens: noted sideline poet, needs 60 yards vs. Washington.</b> The talent is undeniable, the vibes are volatile. All upside, all drama — a pick with main-character energy.</div>
+      </div>
+
+      <div class="leg pos"><span class="tag pend">⏳</span>
+        <h3>Christian McCaffrey 50+ rushing yards</h3><div class="match">MIA @ SF · 4:26 PM ET · −220</div>
+        <div class="dualb">
+          <div class="row"><span class="lbl">Implied</span><div class="track"><i style="width:69%;background:var(--blue)"></i></div><span class="pct">68.8%</span></div>
+          <div class="row"><span class="lbl">Model</span><div class="track"><i style="width:70%;background:var(--green)"></i></div><span class="pct">70.0%</span></div>
+        </div>
+        <div class="nums"><div><span>Edge</span><span class="up">+1.25pp</span></div><div><span>EV / $100</span><span class="up">+$1.82</span></div></div>
+        <div class="roast"><b>The line moved from −188 in the thread to −220 by kickoff.</b> The group chat literally moved the market. When the ninjas agree this hard, the books notice. CMC vs. Miami's front: men vs. turnstiles.</div>
+      </div>
+    </div>
+
+    <div class="kill">
+      <h3>🔪 The Kill Order</h3>
+      <div class="ksub">Ranked by bust probability — the legs most likely to murder the ticket, in order. Watch these like a hawk.</div>
+      <div class="krow"><span class="kn">1</span><span><span class="knm">Shough over 1.5 TDs</span><div class="kc">The grim reaper wears a Saints jersey.</div></span><span class="kb">70.0% bust</span></div>
+      <div class="krow"><span class="kn">2</span><span><span class="knm">Concepcion 4+ receptions</span><div class="kc">Rookie, on the road, in Tampa. The sweat is the point.</div></span><span class="kb">56.0% bust</span></div>
+      <div class="krow"><span class="kn">3</span><span><span class="knm">Saquon anytime TD</span><div class="kc">Even the free square has a 44% chance of betrayal.</div></span><span class="kb">44.0% bust</span></div>
+      <div class="krow"><span class="kn">4</span><span><span class="knm">Ward under 185.5</span><div class="kc">One busted coverage away from pain.</div></span><span class="kb">44.0% bust</span></div>
+      <div class="krow"><span class="kn">5</span><span><span class="knm">Pickens 60+ yards</span><div class="kc">Main-character energy cuts both ways.</div></span><span class="kb">42.0% bust</span></div>
+      <div class="krow"><span class="kn">6</span><span><span class="knm">Bijan 80+ yards</span><div class="kc">Even the crown jewel can stub a toe.</div></span><span class="kb">40.0% bust</span></div>
+      <div class="krow"><span class="kn">7</span><span><span class="knm">Hurts 25+ rush yards</span><div class="kc">Three scrambles and a prayer. Usually answered.</div></span><span class="kb">37.0% bust</span></div>
+      <div class="krow"><span class="kn">8</span><span><span class="knm">CMC 50+ yards</span><div class="kc">Elite, but hamstrings are load-bearing.</div></span><span class="kb">30.0% bust</span></div>
+      <div class="krow"><span class="kn">9</span><span><span class="knm">Denver +3.5</span><div class="kc">Insurance policies rarely burn down. Rarely.</div></span><span class="kb">28.0% bust</span></div>
+      <div class="krow"><span class="kn">10</span><span><span class="knm">Jefferson 60+ yards</span><div class="kc">Gravity holds. Usually.</div></span><span class="kb">26.0% bust</span></div>
+    </div>
+
+    <h3 style="margin:26px 0 4px">🕐 The Sweat Schedule</h3>
+    <div class="sweat">
+      <div class="slot"><div class="t">1:01 PM ET</div><div class="g">The early bloodbath: SGP (PHI@TEN) · Shough (NO@BAL) · Concepcion (CLE@TB) · Jefferson (MIN@CHI) · Bijan (CAR@ATL). Seven legs decided by ~4pm. Pace yourself.</div></div>
+      <div class="slot"><div class="t">4:06 PM ET</div><div class="g">Denver +3.5 (JAX@DEN). The insurance leg. If the early slate survives, this is where you start texting people you haven't spoken to in years.</div></div>
+      <div class="slot"><div class="t">4:26 PM ET</div><div class="g">The nightcap double: Pickens (WAS@DAL) + CMC (MIA@SF). Two legs, one dream, $26,244.47. Do not watch alone.</div></div>
+    </div>
+    <div class="note">😂 <b>Cash-out watch:</b> the app is currently offering <b>$100.00</b> to cash out a $100 ticket. The books have run the numbers and concluded your ticket is worth exactly what you paid. Bold analysis.</div>
+  </div>
+</section>
+
+<!-- ============ STACK RANK ============ -->
+<section id="rank" class="page">
+  <div class="ticket">
+    <div class="ticket-top"><h2>📊 Stack Rank — Sunday Gauntlet</h2><div class="odds-big" style="font-size:18px">by edge (model − implied)</div></div>
+    <p style="color:var(--dim);font-size:14px">Positive edge = the model likes it more than the price. Negative = you're paying the alt-line tax. Ranked cold, like the takes.</p>
+    <table class="rank">
+      <tr><th>#</th><th>Leg</th><th>Odds</th><th>Edge</th><th style="min-width:140px">Edge bar</th><th>Roast in 6 words</th></tr>
+      <tr><td class="mono">1</td><td><b>Saquon anytime TD</b> <span style="color:var(--dim2)">SGP</span></td><td class="mono">−105</td><td class="mono pos-t">+4.78pp</td><td><div class="bar"><i style="width:100%;background:var(--green)"></i></div></td><td style="color:var(--dim)">Free square. Allegedly.</td></tr>
+      <tr><td class="mono">2</td><td><b>Bijan 80+ rush yds</b></td><td class="mono">−138</td><td class="mono pos-t">+2.02pp</td><td><div class="bar"><i style="width:42%;background:var(--green)"></i></div></td><td style="color:var(--dim)">Crown jewel. Handle with care.</td></tr>
+      <tr><td class="mono">3</td><td><b>CMC 50+ rush yds</b></td><td class="mono">−220</td><td class="mono pos-t">+1.25pp</td><td><div class="bar"><i style="width:26%;background:var(--green)"></i></div></td><td style="color:var(--dim)">Market moved? Already knew.</td></tr>
+      <tr><td class="mono">4</td><td><b>Jefferson 60+ rec yds</b></td><td class="mono">−270</td><td class="mono pos-t">+1.03pp</td><td><div class="bar"><i style="width:22%;background:var(--green)"></i></div></td><td style="color:var(--dim)">Betting on gravity itself.</td></tr>
+      <tr><td class="mono">5</td><td><b>Ward under 185.5</b> <span style="color:var(--dim2)">SGP</span></td><td class="mono">est −130</td><td class="mono neg-t">−0.52pp</td><td><div class="bar"><i style="width:13%;background:var(--red)"></i></div></td><td style="color:var(--dim)">Priced right. That's a compliment.</td></tr>
+      <tr><td class="mono">6</td><td><b>Hurts 25+ rush yds</b> <span style="color:var(--dim2)">SGP</span></td><td class="mono">est −175</td><td class="mono neg-t">−0.64pp</td><td><div class="bar"><i style="width:16%;background:var(--red)"></i></div></td><td style="color:var(--dim)">Chill leg, honest price.</td></tr>
+      <tr><td class="mono">7</td><td><b>DEN +3.5</b></td><td class="mono">−280</td><td class="mono neg-t">−1.68pp</td><td><div class="bar"><i style="width:43%;background:var(--red)"></i></div></td><td style="color:var(--dim)">Expensive feelings, purchased accordingly.</td></tr>
+      <tr><td class="mono">8</td><td><b>Pickens 60+ rec yds</b></td><td class="mono">−152</td><td class="mono neg-t">−2.32pp</td><td><div class="bar"><i style="width:59%;background:var(--red)"></i></div></td><td style="color:var(--dim)">Main-character energy, volatile script.</td></tr>
+      <tr><td class="mono">9</td><td><b>Concepcion 4+ receptions</b></td><td class="mono">+110</td><td class="mono neg-t">−3.62pp</td><td><div class="bar"><i style="width:93%;background:var(--red)"></i></div></td><td style="color:var(--dim)">Chose chaos. Chaos is priced.</td></tr>
+      <tr><td class="mono">10</td><td><b>Shough over 1.5 TDs</b></td><td class="mono">+195</td><td class="mono neg-t">−3.90pp</td><td><div class="bar"><i style="width:100%;background:var(--red)"></i></div></td><td style="color:var(--dim)">Two TDs. In Baltimore. Sure.</td></tr>
+    </table>
+    <div class="note">🔬 <b>Reading the rank:</b> the top of the board is all "boring" high-probability alt lines — that's where the tiny edges live. The bottom is lottery dust: Shough and Concepcion carry the ticket's payout the way a toddler carries groceries — enthusiastically, unreliably. Both can still hit. That's why it's called gambling.</div>
+  </div>
+
+  <div class="ticket">
+    <div class="ticket-top"><h2>🏆 Stack Rank — Thursday Miracle</h2><div class="odds-big" style="font-size:18px">by model prob (odds not logged)</div></div>
+    <table class="rank">
+      <tr><th>#</th><th>Leg</th><th>Result</th><th>Model</th><th style="min-width:140px">Prob bar</th></tr>
+      <tr><td class="mono">1</td><td><b>Allen o31.5 rush yds</b> <span style="color:var(--dim2)">(72 actual)</span></td><td class="pos-t">✅</td><td class="mono">58%</td><td><div class="bar"><i style="width:58%;background:var(--blue)"></i></div></td></tr>
+      <tr><td class="mono">2</td><td><b>Cook anytime TD</b></td><td class="pos-t">✅</td><td class="mono">52%</td><td><div class="bar"><i style="width:52%;background:var(--blue)"></i></div></td></tr>
+      <tr><td class="mono">3</td><td><b>Kincaid 50+ rec yds</b> <span style="color:var(--dim2)">(95 actual)</span></td><td class="pos-t">✅</td><td class="mono">48%</td><td><div class="bar"><i style="width:48%;background:var(--blue)"></i></div></td></tr>
+      <tr><td class="mono">4</td><td><b>Hutchinson sack</b></td><td class="pos-t">✅</td><td class="mono">45%</td><td><div class="bar"><i style="width:45%;background:var(--blue)"></i></div></td></tr>
+      <tr><td class="mono">5</td><td><b>LaPorta anytime TD</b></td><td class="pos-t">✅</td><td class="mono">40%</td><td><div class="bar"><i style="width:40%;background:var(--blue)"></i></div></td></tr>
+      <tr><td class="mono">6</td><td><b>Vaki 5+ rush yds</b> <span style="color:var(--dim2)">(7 actual)</span></td><td class="pos-t">✅</td><td class="mono">35%</td><td><div class="bar"><i style="width:35%;background:var(--purple)"></i></div></td></tr>
+      <tr><td class="mono">7</td><td><b>Chubb sack</b> <span style="color:var(--dim2)">(1.5 actual)</span></td><td class="pos-t">✅</td><td class="mono">35%</td><td><div class="bar"><i style="width:35%;background:var(--purple)"></i></div></td></tr>
+    </table>
+    <div class="note">🎲 <b>Seven for seven</b> on legs the model gave a combined <b>0.32%</b> (about 1-in-313). Every single leg below 60% and they all hit. Statisticians call this "variance." The group chat calls it "we're him."</div>
+  </div>
+</section>
+
+<!-- ============ MATH LAB ============ -->
+<section id="math" class="page">
+  <div class="ticket">
+    <div class="ticket-top"><h2>🔬 Math Lab</h2><div class="odds-big" style="font-size:18px">formulas, no mercy</div></div>
+
+    <div class="math">
+      <h3>Week 2 so far</h3>
+      <table class="rank">
+        <tr><th>Ticket</th><th>Stake</th><th>Result</th><th>Profit</th></tr>
+        <tr><td>Thu 9/17 · 7-leg props</td><td class="mono">$50.00</td><td class="pos-t"><b>W 7/7</b></td><td class="mono pos-t">+$12,278.17</td></tr>
+        <tr><td>Sun 9/20 · 10-leg SGP+</td><td class="mono">$100.00</td><td style="color:var(--gold)"><b>PENDING</b></td><td class="mono">—</td></tr>
+        <tr><td><b>Settled total</b></td><td class="mono"><b>$50.00</b></td><td><b>1–0</b></td><td class="mono pos-t"><b>+$12,278.17 (+24,556% ROI)</b></td></tr>
+      </table>
+      <p style="margin-top:12px">One ticket banked, one ticket sweating. Week 2 is already the most profitable week in group history and Sunday hasn't even kicked off.</p>
+    </div>
+
+    <div class="math">
+      <h3>How a leg gets graded</h3>
+      <div class="formula">implied p = risk ÷ (risk + win) &nbsp;→&nbsp; −270 ⇒ 270/370 = 73.0%</div>
+      <div class="formula">edge = model p − implied p &nbsp;→&nbsp; +2pp means the price is 2 points soft</div>
+      <div class="formula">EV per $100 = model p × payout − 100</div>
+      <div class="formula">bust p = 1 − model p &nbsp;→&nbsp; the Kill Order ranking</div>
+      <p>Ticket probability is the product of leg probabilities (legs treated as independent — the SGP trio is decomposed into estimated standalone prices that multiply to ~18.4%, matching the +447 bundle's 18.28% implied, so the book's correlation handling is visible in the open).</p>
+    </div>
+
+    <div class="math">
+      <h3>Sunday ticket autopsy (pre-game)</h3>
+      <div class="formula">board: 0.381% ⇒ 1-in-262 ⇒ fair +26110 … ticket pays +26144 ✓ (fair vs. board)</div>
+      <div class="formula">model: 0.339% ⇒ 1-in-295 ⇒ fair +29444 … EV = 0.00339 × $26,244.47 − $100 = −$11.17</div>
+      <p>The ticket is priced <b>fairly against the board</b> — the sportsbook isn't robbing anyone here. The model just thinks the board is ~11% too optimistic, mostly via the alt-line tax on Shough (+195), Concepcion (+110), and the −280 Denver insurance policy. Four legs grade positive; they carry the respectability. Four grade negative; they carry the payout.</p>
+    </div>
+
+    <div class="math">
+      <h3>Thursday retro-autopsy</h3>
+      <div class="formula">paid: +24556 ⇒ implied 0.406% ⇒ 1-in-247</div>
+      <div class="formula">model: 0.319% ⇒ 1-in-313 ⇒ "fair" +31227 … retro EV = −$10.65 on $50</div>
+      <p>Yes — the miracle ticket was <i>also</i> slightly −EV by the model, and it still turned $50 into $12,328.17. Two lessons, both true: (1) the model prices the board, not destiny; (2) if you never buy the ticket you can never hit the 1-in-313. Size accordingly, ninjas.</p>
+    </div>
+
+    <div class="note">⚠️ <b>Methodology, honestly:</b> "model probabilities" are Muse's estimates blending market prices with matchup priors — a structured opinion with a calculator, not a quantitative model. They exist to rank legs and spark debate, not to size bets. Implied probabilities and EV math are exact. Send next week's ticket + picker names and the tracker grows. 🥷<br><br>Not financial advice. Obviously.</div>
+  </div>
+</section>
+
+<footer>
+  Built by Muse · Degenerate Science Division · for the Gambling Rollover Ninjas 🥷<br>
+  Data: group pick thread (Sep 18) + ticket screenshots (Sep 20) · Picker names pending — send them and they get slotted in.<br>
+  Not financial advice. If you need this disclaimer explained, you shouldn't be betting 10-leg parlays.
+</footer>
+
+</div>
+<script>
+function show(id){
+  document.querySelectorAll('section.page').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('nav.tabs button').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
