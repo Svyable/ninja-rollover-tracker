@@ -185,6 +185,9 @@ table.rank tr:hover td{background:rgba(79,157,255,.05)}
 .injury-alert .ia-body b{color:var(--txt)}
 .leg.injured{border-color:rgba(255,93,108,.55);box-shadow:0 0 28px rgba(255,93,108,.15)}
 .tag.inj{background:rgba(255,93,108,.16);color:var(--red);border:1px solid rgba(255,93,108,.55);animation:iapulse 2s infinite}
+.injwatch{background:rgba(79,157,255,.05);border:1px solid rgba(79,157,255,.32);border-radius:16px;padding:18px 20px;margin:18px 0}
+.injwatch h4{font-family:var(--font-d);color:var(--blue);margin-bottom:4px;font-size:16px}
+.injwatch .iw-sub{color:var(--dim);font-size:13px;margin-bottom:12px;line-height:1.6}
 .playbook{background:linear-gradient(180deg,rgba(20,10,8,.7),rgba(8,13,28,.7));
   border:1px solid rgba(255,157,92,.35);border-radius:18px;padding:24px;margin-top:20px}
 .playbook h3{font-family:var(--font-d);font-size:19px;margin-bottom:6px;color:#ffb08a}
@@ -263,7 +266,7 @@ footer .sig{font-family:var(--font-d);color:var(--dim);font-size:13px}
     <div class="verdict good">
       <b>The one they'll tell grandkids about.</b> Seven legs, seven hits, $50 turned into twelve grand.
       Retro-model says this ticket's true price was about <b>+31227</b> — meaning the group got paid <i>worse</i> than fair
-      and still cashed. That's not skill, that's not luck, that's <b>destiny with a DraftKings account</b>.
+      and still cashed. That's not skill, that's not luck, that's <b>destiny with a FanDuel account</b>.
       Lesson: keep buying lottery tickets with positive vibes; bankroll management still applies, you animals.
     </div>
     <div class="legs">
@@ -331,46 +334,64 @@ footer .sig{font-family:var(--font-d);color:var(--dim);font-size:13px}
       <span class="chip pend">⏳ PENDING — games today</span>
     </div>
     <div class="injury-alert">
-      <div class="ia-head">🚨 INJURY WATCH — SAQUON BARKLEY DOWN (Q1 @ TEN)</div>
-      <div class="ia-body">Went down early in the first quarter — <b>no official status yet</b>, news hasn't caught up. Leg downgraded to <b>injury-adjusted 15%</b> (small chance he returns or already did damage). If he's done, the SGP dies with him and the ticket goes to ~0. <b>This is compounding injury risk, happening live.</b> Scroll for the playbook on how to stop building tickets like this.</div>
+      <div class="ia-head">🚨 SAQUON BARKLEY — INJURY IN REVIEW (FANDUEL)</div>
+      <div class="ia-body">Hit by Jeffery Simmons on the <b>first offensive play</b> — 1 carry, 0 yards. Stayed down a minute, trainers out, medical tent, then the locker room holding his <b>left arm/shoulder</b>. Tank Bigsby and Will Shipley splitting the backfield. No official status yet — but FanDuel already flagged the leg <b>INJURY IN REVIEW</b>, and with <b>Bet Protect+</b> on the ticket it should be <b>voided, not graded a loss</b>. The ticket likely survives at ~+12600. Full body-check on every leg below.</div>
+    </div>
+    <div class="injwatch">
+      <h4>🏥 Injury Watch — every body on the ticket</h4>
+      <div class="iw-sub">Checked against today's inactives and injury news (Sun ~1:25pm CT). 🛡️ = Bet Protect+ shield on the FanDuel ticket — injured-player legs void instead of losing.</div>
+      <div style="overflow-x:auto"><table class="rank mtable">
+        <tr><th>Player</th><th>Game</th><th>Status</th><th>🛡️</th><th>Intel</th></tr>
+        <tr><td><b>Saquon Barkley</b> (RB)</td><td class="mono">PHI @ TEN</td><td class="neg-t"><b>🚨 IN REVIEW</b></td><td>🛡️</td><td style="color:var(--dim)">1 carry, 0 yds. Simmons hit on play one → tent → locker room (left arm/shoulder). No official word.</td></tr>
+        <tr><td><b>Jalen Hurts</b> (QB)</td><td class="mono">PHI @ TEN</td><td class="pos-t"><b>✅ Active</b></td><td>🛡️</td><td style="color:var(--dim)">PHI was 4th &amp; goal at the 1 early — tush-push territory. Eagles D minus LB Greenard (pec).</td></tr>
+        <tr><td><b>Cam Ward</b> (QB)</td><td class="mono">TEN vs PHI</td><td class="pos-t"><b>✅ Active</b></td><td style="color:var(--dim2)">—</td><td style="color:var(--dim)">PHI safety Mukuba ACTIVE (helps the under). TEN CB Flott OUT (helps PHI pass game, neutral for Ward).</td></tr>
+        <tr><td><b>Tyler Shough</b> (QB)</td><td class="mono">NO @ BAL</td><td class="pos-t"><b>✅ Active</b></td><td>🛡️</td><td style="color:var(--dim)">Kamara (season debut!) &amp; Olave (hammy) both ACTIVE — real weapons back. Saints driving early. Ravens without Zay Flowers.</td></tr>
+        <tr><td><b>KC Concepcion</b> (WR)</td><td class="mono">CLE @ TB</td><td class="pos-t"><b>✅ Expected</b></td><td style="color:var(--dim2)">—</td><td style="color:var(--dim)">No injury news. TB down CB Jacob Parrish (back) — thinner secondary helps.</td></tr>
+        <tr><td><b>Justin Jefferson</b> (WR)</td><td class="mono">MIN @ CHI</td><td class="pos-t"><b>✅ Active</b></td><td style="color:var(--dim2)">—</td><td style="color:var(--dim)">Not on Vikings inactive list. Bears at full strength (RT D. Wright cleared).</td></tr>
+        <tr><td><b>Bijan Robinson</b> (RB)</td><td class="mono">CAR @ ATL</td><td class="pos-t"><b>✅ Expected</b></td><td style="color:var(--dim2)">—</td><td style="color:var(--dim)">No injury news out of Atlanta.</td></tr>
+        <tr><td><b>Denver Broncos</b></td><td class="mono">JAX @ DEN</td><td class="pos-t"><b>🏈 Team bet</b></td><td style="color:var(--dim2)">—</td><td style="color:var(--dim)">No single player's body can kill this leg. The anti-fragile one.</td></tr>
+        <tr><td><b>George Pickens</b> (WR)</td><td class="mono">WAS @ DAL</td><td class="pos-t"><b>✅ Expected</b></td><td style="color:var(--dim2)">—</td><td style="color:var(--dim)">No injury news.</td></tr>
+        <tr><td><b>C. McCaffrey</b> (RB)</td><td class="mono">MIA @ SF</td><td class="pos-t"><b>✅ Expected</b></td><td style="color:var(--dim2)">—</td><td style="color:var(--dim)">No injury news — but it's CMC. Perennial watch-list; monitor warmups.</td></tr>
+      </table></div>
+      <div class="note" style="margin-top:12px">🔬 <b>Net injury read:</b> one confirmed scare (Saquon, protected), two quiet boosts (Kamara + Olave back for Shough; Parrish out for Concepcion), one helper (Mukuba active for the Ward under). Every other body is clean. Ticket also carries a Bet Reset Token.</div>
     </div>
     <div class="verdict mid">
       <b>The science is rude about this ticket:</b> the board prices it at <b>+26144</b> (0.381% implied, about 1-in-262).
       The degenerate model puts true probability at <b>0.339%</b> (about 1-in-295, fair price ≈ +29444) —
       for an expected value of <b>−$11.17 per $100</b>. Translation: it's a slightly overpriced lottery ticket.
-      <b>🚨 Live overlay:</b> Saquon down in Q1 (unconfirmed) — injury-adjusted ticket prob <b>~0.091% (1-in-1,101)</b>. If he's out, the vibes are officially bothered.</div>
+      <b>🛡️ Live overlay:</b> Saquon exited Q1 (arm/shoulder) — FanDuel has the leg <b>INJURY IN REVIEW</b>. Void scenario: ticket continues at <b>~+12600</b>, model <b>~0.61%</b>, max win <b>~$12.7K</b>. The cruel twist: voiding Saquon removes the ticket's only +EV piece, so survival pays less than the original dream.</div>
 
     <div class="thermo">
       <h4>🌡️ TICKET THERMOMETER — how likely is $26K, really?</h4>
       <div class="trow">
         <div class="tlabel"><span>📊 Board price (+26144)</span><b>0.381% · 1-in-262</b></div>
-        <div class="track"><i style="width:76%;background:linear-gradient(90deg,var(--blue),var(--purple))"></i></div>
+        <div class="track"><i style="width:59%;background:linear-gradient(90deg,var(--blue),var(--purple))"></i></div>
       </div>
       <div class="trow">
         <div class="tlabel"><span>🥷 Degenerate model</span><b>0.339% · 1-in-295</b></div>
-        <div class="track"><i style="width:68%;background:linear-gradient(90deg,var(--green),var(--blue))"></i></div>
+        <div class="track"><i style="width:52%;background:linear-gradient(90deg,var(--green),var(--blue))"></i></div>
       </div>
       <div class="trow">
-        <div class="tlabel"><span>🚨 Injury-adjusted (Saquon Q1)</span><b>0.091% · 1-in-1,101</b></div>
-        <div class="track"><i style="width:18%;background:linear-gradient(90deg,#7a1f28,var(--red))"></i></div>
+        <div class="tlabel"><span>🛡️ Void scenario (Bet Protect+)</span><b>0.61% model · ~+12600</b></div>
+        <div class="track"><i style="width:93%;background:linear-gradient(90deg,#1a5c8a,var(--blue))"></i></div>
       </div>
-      <div class="tlabel" style="margin-top:8px"><span style="color:var(--dim2)">The gap between the first two bars is the alt-line tax. The cliff after the third bar is one running back's leg. If Saquon is ruled out, the red bar goes to zero.</span></div>
+      <div class="tlabel" style="margin-top:8px"><span style="color:var(--dim2)">First two bars: the alt-line tax. The blue bar: if Bet Protect+ voids Saquon, the ticket survives and gets <i>more</i> likely — but the max win halves to ~$12.7K and the EV worsens, because the voided leg was the only +EV piece.</span></div>
     </div>
 
     <div class="sgp">
       <h4>🔗 SGP BUNDLE — PHI @ TEN · priced +447 · each piece broken out below</h4>
-      <div style="font-size:13.5px;color:var(--dim);line-height:1.7">The book sells these three as a <b style="color:var(--txt)">+447 bundle</b> (18.28% implied). Estimated standalone prices multiply to ~18.4% — so the bundle is priced about fairly, and the model's 19.8% still gives the trio a combined <b style="color:var(--green)">+1.48pp edge</b>. Saquon's −105 is the real thread price; Hurts/Ward standalone lines are estimates since the book only posted the bundle. 🔬 <b>Correlation note:</b> Saquon TDs and Hurts rush yards are mildly <i>negatively</i> correlated (every tush-push TD is a carry Saquon doesn't get) — decomposing the bundle shows exactly where the value lives: it's all Saquon. <b style="color:var(--red)">🚨 LIVE: Saquon went down in Q1 — the bundle is on life support until his status clears. One knee, three legs.</b></div>
+      <div style="font-size:13.5px;color:var(--dim);line-height:1.7">The book sells these three as a <b style="color:var(--txt)">+447 bundle</b> (18.28% implied). Estimated standalone prices multiply to ~18.4% — so the bundle is priced about fairly, and the model's 19.8% still gives the trio a combined <b style="color:var(--green)">+1.48pp edge</b>. Saquon's −105 is the real thread price; Hurts/Ward standalone lines are estimates since the book only posted the bundle. 🔬 <b>Correlation note:</b> Saquon TDs and Hurts rush yards are mildly <i>negatively</i> correlated (every tush-push TD is a carry Saquon doesn't get) — decomposing the bundle shows exactly where the value lives: it's all Saquon. <b style="color:var(--red)">🚨 LIVE: Saquon exited Q1 (1 carry, 0 yds; arm/shoulder) — FanDuel INJURY IN REVIEW. Bet Protect+ likely voids the leg: the SGP reprices to ~2 legs (Hurts + Ward) and the ticket continues at ~+12600.</b></div>
     </div>
 
     <div class="legs">
-      <div class="leg neg injured"><span class="tag inj">🚨 INJURED Q1</span>
-        <h3>Saquon Barkley anytime TD <span style="font-size:11px;color:var(--dim2)">· SGP piece 1/3</span></h3><div class="match">PHI @ TEN · 1:01 PM ET · −105 (thread price) · went down Q1</div>
+      <div class="leg neg injured"><span class="tag inj">🚨 IN REVIEW</span>
+        <h3>Saquon Barkley anytime TD <span style="font-size:11px;color:var(--dim2)">· SGP piece 1/3</span></h3><div class="match">PHI @ TEN · −105 (thread price) · 1 carry, 0 yds — exited Q1</div>
         <div class="dualb">
           <div class="row"><span class="lbl">Implied</span><div class="track"><i style="width:51%;background:var(--blue)"></i></div><span class="pct">51.2%</span></div>
-          <div class="row"><span class="lbl">Model*</span><div class="track"><i style="width:15%;background:var(--red)"></i></div><span class="pct">15.0%</span></div>
+          <div class="row"><span class="lbl">Status</span><div class="track"><i style="width:8%;background:var(--red)"></i></div><span class="pct">VOID?</span></div>
         </div>
-        <div class="nums"><div><span>Edge*</span><span class="down">−36.2pp</span></div><div><span>EV / $100*</span><span class="down">−$70.71</span></div></div>
-        <div class="roast"><b>The free square just tore something.</b> *Injury-adjusted: 15% is "might return, might have already scored" — if he's ruled out this goes to 0% and takes the SGP and the ticket with it. This is what a single point of failure looks like.</div>
+        <div class="nums"><div><span>Void scenario</span><span class="up">ticket → ~+12600</span></div><div><span>Max win</span><span class="down">$26.2K → ~$12.7K</span></div></div>
+        <div class="roast"><b>Jeffery Simmons ended this leg on the first play.</b> Tent, then the locker room holding his left arm/shoulder; Bigsby and Shipley splitting carries. FanDuel flagged it <b>INJURY IN REVIEW</b> — Bet Protect+ should void it rather than grade the loss. The ticket survives; the value doesn't: Saquon was the only +EV piece of the SGP.</div>
       </div>
 
       <div class="leg neg"><span class="tag pend">⏳</span>
@@ -467,7 +488,7 @@ footer .sig{font-family:var(--font-d);color:var(--dim);font-size:13px}
     <div class="kill">
       <h3>🔪 The Kill Order</h3>
       <div class="ksub">Ranked by bust probability — the legs most likely to murder the ticket, in order. Watch these like a hawk.</div>
-      <div class="krow"><span class="kn">1</span><span><span class="knm">Saquon anytime TD 🚨</span><div class="kc">Down in Q1. The free square is now a crime scene.</div></span><span class="kb">85.0% bust</span></div>
+      <div class="krow"><span class="kn">1</span><span><span class="knm">Saquon anytime TD 🚨</span><div class="kc">In review — likely VOID via Bet Protect+, not lost. Ticket survives at ~+12600; the value doesn't.</div></span><span class="kb">VOID?</span></div>
       <div class="krow"><span class="kn">2</span><span><span class="knm">Shough over 1.5 TDs</span><div class="kc">The grim reaper wears a Saints jersey.</div></span><span class="kb">70.0% bust</span></div>
       <div class="krow"><span class="kn">3</span><span><span class="knm">Concepcion 4+ receptions</span><div class="kc">Rookie, on the road, in Tampa. The sweat is the point.</div></span><span class="kb">56.0% bust</span></div>
       <div class="krow"><span class="kn">4</span><span><span class="knm">Ward under 185.5</span><div class="kc">One busted coverage away from pain.</div></span><span class="kb">44.0% bust</span></div>
@@ -490,7 +511,8 @@ footer .sig{font-family:var(--font-d);color:var(--dim);font-size:13px}
       <li><b>Balance player props with team-level bets.</b> Spreads and totals survive a single injury; player props don't. A ticket that's 100% "star does star thing" is a portfolio of knees.</li>
       <li><b>Read the practice report.</b> Limited or DNP midweek = downgrade the model on the spot, or fade the leg entirely. The report is free; the lesson costs $100.</li>
       <li><b>Respect the math of many legs.</b> If each leg carries even a ~3% in-game injury risk, 10 legs means roughly a 1-in-4 chance <i>somebody</i> gets hurt. Same-game stacks don't diversify that — they concentrate it.</li>
-      <li><b>When a leg dies early, the ticket is dead.</b> Don't chase it with live bets. Take any cash-out the app insults you with and go touch grass.</li>
+      <li><b>When a leg dies early, check your protection first.</b> FanDuel's Bet Protect+ voids injured-player legs instead of grading them losses — which is exactly what's saving this ticket right now. No protection on the ticket? <i>Then</i> it's dead: take any cash-out the app insults you with and go touch grass.</li>
+      <li><b>Opt into injury protection whenever it's offered.</b> A void turns a 0% leg into a repriced, still-live ticket. It is the single highest-EV checkbox in parlay betting — and today it's the only reason we're still watching.</li>
     </ol>
     <div class="asym">🔬 <b>The asymmetry edge:</b> injuries don't hurt every leg equally — they <b>help</b> unders. If a QB goes down, the under on his passing yards gets safer; if a WR limps off, the opposing defense's job gets easier. Pair fragile overs with antifragile unders and the injury gods start working <i>for</i> you. (Ward under 185.5 says thanks.)</div>
   </div>
@@ -546,11 +568,11 @@ footer .sig{font-family:var(--font-d);color:var(--dim);font-size:13px}
 <section id="matrix" class="page">
   <div class="ticket">
     <div class="ticket-top"><h2>🧮 The Matrix — every leg, every number</h2><div class="odds-big" style="font-size:18px">17 legs · 0 hiding</div></div>
-    <p style="color:var(--dim);font-size:14px">One dense table, both tickets. Scroll sideways on your phone like a degenerate Bloomberg terminal. <span style="color:var(--dim2)">*</span> = estimated standalone (book only posted the bundle); <span style="color:var(--red)">*</span> on Saquon = injury-adjusted after the Q1 exit (unconfirmed).</p>
+    <p style="color:var(--dim);font-size:14px">One dense table, both tickets. Scroll sideways on your phone like a degenerate Bloomberg terminal. <span style="color:var(--dim2)">*</span> = estimated standalone (book only posted the bundle); <span style="color:var(--red)">*</span> on Saquon = <b>INJURY IN REVIEW</b> — Bet Protect+ likely voids the leg; void scenario ≈ ticket <b>~+12600</b>, max win <b>~$12.7K</b>.</p>
     <div style="overflow-x:auto">
     <table class="rank mtable">
       <tr><th>Wk</th><th>Leg</th><th>Odds</th><th>Impl.</th><th>Model</th><th>Edge</th><th>EV/$100</th><th>Bust</th><th>Res</th></tr>
-      <tr><td class="mono">S</td><td><b>Saquon anytime TD 🚨</b> <span style="color:var(--dim2)">SGP</span></td><td class="mono">−105</td><td class="mono">51.2%</td><td class="mono">15.0%*</td><td class="mono neg-t">−36.2</td><td class="mono neg-t">−$70.71</td><td class="mono">85.0%</td><td>🚨</td></tr>
+      <tr><td class="mono">S</td><td><b>Saquon anytime TD 🚨</b> <span style="color:var(--dim2)">SGP</span></td><td class="mono">−105</td><td class="mono">51.2%</td><td class="mono">VOID?*</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td>🛡️</td></tr>
       <tr><td class="mono">S</td><td><b>Bijan 80+ rush yds</b></td><td class="mono">−138</td><td class="mono">58.0%</td><td class="mono">60.0%</td><td class="mono pos-t">+2.02</td><td class="mono pos-t">+$3.48</td><td class="mono">40.0%</td><td>⏳</td></tr>
       <tr><td class="mono">S</td><td><b>CMC 50+ rush yds</b></td><td class="mono">−220</td><td class="mono">68.8%</td><td class="mono">70.0%</td><td class="mono pos-t">+1.25</td><td class="mono pos-t">+$1.82</td><td class="mono">30.0%</td><td>⏳</td></tr>
       <tr><td class="mono">S</td><td><b>Jefferson 60+ rec yds</b></td><td class="mono">−270</td><td class="mono">73.0%</td><td class="mono">74.0%</td><td class="mono pos-t">+1.03</td><td class="mono pos-t">+$1.41</td><td class="mono">26.0%</td><td>⏳</td></tr>
