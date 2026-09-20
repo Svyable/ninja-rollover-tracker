@@ -111,6 +111,20 @@
   footer{margin-top:44px;text-align:center;color:var(--dim2);font-size:12.5px;line-height:1.8;padding:0 20px}
   .note{background:rgba(176,107,255,.07);border:1px solid rgba(176,107,255,.35);border-radius:12px;
      padding:14px 18px;margin-top:18px;font-size:13.5px;color:var(--dim);line-height:1.6}
+  .latest{display:inline-block;background:var(--gold);color:#111;font-size:10px;font-weight:800;border-radius:6px;padding:2px 7px;margin-left:6px;letter-spacing:1px;vertical-align:2px}
+  .qnav{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+  .qnav button{background:var(--card);border:1px solid var(--blue);color:var(--txt);border-radius:10px;padding:10px 18px;font-weight:700;cursor:pointer;font-size:14px}
+  .qnav button:hover{border-color:var(--green)}
+  .mtable{font-size:12.5px}
+  .mtable td,.mtable th{padding:8px}
+  .simbox{background:#0c1327;border:1px solid rgba(34,224,122,.35);border-radius:14px;padding:20px;margin-top:16px}
+  .simbox button{background:linear-gradient(135deg,#17335f,#0f6a3f);border:1px solid var(--green);color:#fff;border-radius:10px;padding:12px 22px;font-weight:800;font-size:15px;cursor:pointer}
+  .simbox button:hover{filter:brightness(1.15)}
+  .bustrow{display:flex;align-items:center;gap:10px;margin:6px 0;font-family:var(--mono);font-size:12.5px}
+  .bustrow .bn{width:170px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--dim)}
+  .bustrow .bt{flex:1;height:8px;background:#1a2440;border-radius:4px;overflow:hidden}
+  .bustrow .bt i{display:block;height:100%;background:var(--red);border-radius:4px}
+  .bustrow .bv{width:64px;text-align:right;color:var(--txt)}
   @media(max-width:560px){.nums{grid-template-columns:1fr 1fr}.record-pill{font-size:12px;gap:8px;padding:8px 14px}}
 </style>
 </head>
@@ -125,14 +139,16 @@
 </header>
 
 <nav class="tabs">
-  <button class="active" onclick="show('thu')">Thu 9/17 · The Miracle</button>
-  <button onclick="show('sun')">Sun 9/20 · The Gauntlet</button>
+  <button class="active" onclick="show('sun')">Sun 9/20 · The Gauntlet <span class="latest">LATEST</span></button>
+  <button onclick="show('thu')">Thu 9/17 · The Miracle</button>
   <button onclick="show('rank')">Stack Rank</button>
+  <button onclick="show('matrix')">Matrix</button>
+  <button onclick="show('water')">Waterfall</button>
   <button onclick="show('math')">Math Lab</button>
 </nav>
 
 <!-- ============ THURSDAY ============ -->
-<section id="thu" class="page active">
+<section id="thu" class="page">
   <div class="ticket">
     <div class="ticket-top">
       <h2>🎰 Week 2 — Thursday: The Miracle</h2>
@@ -197,11 +213,12 @@
 
     </div>
     <div class="note">📝 <b>Lab note:</b> per-leg odds weren't logged before kickoff for this one, so edges vs. the board can't be computed retroactively. Model probabilities above are estimates. Going forward: <b>log every leg's odds at bet time</b> or the science suffers. The money, however, did not suffer.</div>
+    <div class="qnav"><button onclick="go('sun')">Sunday Gauntlet →</button><button onclick="go('matrix')">The Matrix →</button></div>
   </div>
 </section>
 
 <!-- ============ SUNDAY ============ -->
-<section id="sun" class="page">
+<section id="sun" class="page active">
   <div class="ticket">
     <div class="ticket-top">
       <h2>⚔️ Week 2 — Sunday: The Gauntlet</h2>
@@ -363,6 +380,7 @@
       <div class="slot"><div class="t">4:26 PM ET</div><div class="g">The nightcap double: Pickens (WAS@DAL) + CMC (MIA@SF). Two legs, one dream, $26,244.47. Do not watch alone.</div></div>
     </div>
     <div class="note">😂 <b>Cash-out watch:</b> the app is currently offering <b>$100.00</b> to cash out a $100 ticket. The books have run the numbers and concluded your ticket is worth exactly what you paid. Bold analysis.</div>
+    <div class="qnav"><button onclick="go('thu')">← Thursday Miracle</button><button onclick="go('water')">Waterfall →</button></div>
   </div>
 </section>
 
@@ -400,6 +418,99 @@
       <tr><td class="mono">7</td><td><b>Chubb sack</b> <span style="color:var(--dim2)">(1.5 actual)</span></td><td class="pos-t">✅</td><td class="mono">35%</td><td><div class="bar"><i style="width:35%;background:var(--purple)"></i></div></td></tr>
     </table>
     <div class="note">🎲 <b>Seven for seven</b> on legs the model gave a combined <b>0.32%</b> (about 1-in-313). Every single leg below 60% and they all hit. Statisticians call this "variance." The group chat calls it "we're him."</div>
+  </div>
+</section>
+
+<!-- ============ MATRIX ============ -->
+<section id="matrix" class="page">
+  <div class="ticket">
+    <div class="ticket-top"><h2>🧮 The Matrix — every leg, every number</h2><div class="odds-big" style="font-size:18px">17 legs · 0 hiding</div></div>
+    <p style="color:var(--dim);font-size:14px">One dense table, both tickets. Scroll sideways on your phone like a degenerate Bloomberg terminal. <span style="color:var(--dim2)">*</span> = estimated standalone (book only posted the bundle).</p>
+    <div style="overflow-x:auto">
+    <table class="rank mtable">
+      <tr><th>Wk</th><th>Leg</th><th>Odds</th><th>Impl.</th><th>Model</th><th>Edge</th><th>EV/$100</th><th>Bust</th><th>Res</th></tr>
+      <tr><td class="mono">S</td><td><b>Saquon anytime TD</b> <span style="color:var(--dim2)">SGP</span></td><td class="mono">−105</td><td class="mono">51.2%</td><td class="mono">56.0%</td><td class="mono pos-t">+4.78</td><td class="mono pos-t">+$9.33</td><td class="mono">44.0%</td><td>⏳</td></tr>
+      <tr><td class="mono">S</td><td><b>Bijan 80+ rush yds</b></td><td class="mono">−138</td><td class="mono">58.0%</td><td class="mono">60.0%</td><td class="mono pos-t">+2.02</td><td class="mono pos-t">+$3.48</td><td class="mono">40.0%</td><td>⏳</td></tr>
+      <tr><td class="mono">S</td><td><b>CMC 50+ rush yds</b></td><td class="mono">−220</td><td class="mono">68.8%</td><td class="mono">70.0%</td><td class="mono pos-t">+1.25</td><td class="mono pos-t">+$1.82</td><td class="mono">30.0%</td><td>⏳</td></tr>
+      <tr><td class="mono">S</td><td><b>Jefferson 60+ rec yds</b></td><td class="mono">−270</td><td class="mono">73.0%</td><td class="mono">74.0%</td><td class="mono pos-t">+1.03</td><td class="mono pos-t">+$1.41</td><td class="mono">26.0%</td><td>⏳</td></tr>
+      <tr><td class="mono">S</td><td><b>Ward under 185.5</b> <span style="color:var(--dim2)">SGP</span></td><td class="mono">−130*</td><td class="mono">56.5%</td><td class="mono">56.0%</td><td class="mono neg-t">−0.52</td><td class="mono neg-t">−$0.92</td><td class="mono">44.0%</td><td>⏳</td></tr>
+      <tr><td class="mono">S</td><td><b>Hurts 25+ rush yds</b> <span style="color:var(--dim2)">SGP</span></td><td class="mono">−175*</td><td class="mono">63.6%</td><td class="mono">63.0%</td><td class="mono neg-t">−0.64</td><td class="mono neg-t">−$1.00</td><td class="mono">37.0%</td><td>⏳</td></tr>
+      <tr><td class="mono">S</td><td><b>DEN +3.5</b></td><td class="mono">−280</td><td class="mono">73.7%</td><td class="mono">72.0%</td><td class="mono neg-t">−1.68</td><td class="mono neg-t">−$2.29</td><td class="mono">28.0%</td><td>⏳</td></tr>
+      <tr><td class="mono">S</td><td><b>Pickens 60+ rec yds</b></td><td class="mono">−152</td><td class="mono">60.3%</td><td class="mono">58.0%</td><td class="mono neg-t">−2.32</td><td class="mono neg-t">−$3.84</td><td class="mono">42.0%</td><td>⏳</td></tr>
+      <tr><td class="mono">S</td><td><b>Concepcion 4+ rec</b></td><td class="mono">+110</td><td class="mono">47.6%</td><td class="mono">44.0%</td><td class="mono neg-t">−3.62</td><td class="mono neg-t">−$7.60</td><td class="mono">56.0%</td><td>⏳</td></tr>
+      <tr><td class="mono">S</td><td><b>Shough over 1.5 TDs</b></td><td class="mono">+195</td><td class="mono">33.9%</td><td class="mono">30.0%</td><td class="mono neg-t">−3.90</td><td class="mono neg-t">−$11.50</td><td class="mono">70.0%</td><td>⏳</td></tr>
+      <tr><td class="mono">T</td><td><b>Allen o31.5 rush yds</b></td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">58%</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">42%</td><td class="pos-t">✅</td></tr>
+      <tr><td class="mono">T</td><td><b>Cook anytime TD</b></td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">52%</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">48%</td><td class="pos-t">✅</td></tr>
+      <tr><td class="mono">T</td><td><b>Kincaid 50+ rec yds</b></td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">48%</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">52%</td><td class="pos-t">✅</td></tr>
+      <tr><td class="mono">T</td><td><b>Hutchinson sack</b></td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">45%</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">55%</td><td class="pos-t">✅</td></tr>
+      <tr><td class="mono">T</td><td><b>LaPorta anytime TD</b></td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">40%</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">60%</td><td class="pos-t">✅</td></tr>
+      <tr><td class="mono">T</td><td><b>Vaki 5+ rush yds</b></td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">35%</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">65%</td><td class="pos-t">✅</td></tr>
+      <tr><td class="mono">T</td><td><b>Chubb sack</b></td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">35%</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">65%</td><td class="pos-t">✅</td></tr>
+    </table>
+    </div>
+    <div class="note">🔬 <b>Patterns the matrix reveals:</b> 4 of 10 Sunday legs grade positive — all "boring" high-probability alt lines. The 6 negative legs are where the +26144 payout lives. Thursday's ticket had <i>zero</i> legs above 58% model and went 7/7 anyway — the matrix measures the board, not destiny.</div>
+  </div>
+
+  <div class="ticket">
+    <div class="ticket-top"><h2>⚖️ Ticket vs Ticket</h2><div class="odds-big" style="font-size:18px">Week 2, both barrels</div></div>
+    <table class="rank">
+      <tr><th>Metric</th><th>Thu 9/17 · Miracle</th><th>Sun 9/20 · Gauntlet</th></tr>
+      <tr><td>Legs</td><td class="mono">7</td><td class="mono">10</td></tr>
+      <tr><td>Stake</td><td class="mono">$50.00</td><td class="mono">$100.00</td></tr>
+      <tr><td>Ticket odds</td><td class="mono">+24556</td><td class="mono">+26144</td></tr>
+      <tr><td>Max payout</td><td class="mono">$12,328.17</td><td class="mono">$26,244.47</td></tr>
+      <tr><td>Board implied</td><td class="mono">0.406% · 1-in-247</td><td class="mono">0.381% · 1-in-262</td></tr>
+      <tr><td>Model prob</td><td class="mono">0.319% · 1-in-313</td><td class="mono">0.339% · 1-in-295</td></tr>
+      <tr><td>Model edge</td><td class="mono neg-t">−0.09pp</td><td class="mono neg-t">−0.04pp</td></tr>
+      <tr><td>Ticket EV</td><td class="mono neg-t">−$10.65</td><td class="mono neg-t">−$11.17</td></tr>
+      <tr><td>Avg leg model</td><td class="mono">44.7%</td><td class="mono">58.3%</td></tr>
+      <tr><td>Result</td><td class="pos-t"><b>✅ 7/7 · +$12,278.17</b></td><td style="color:var(--gold)"><b>⏳ pending</b></td></tr>
+    </table>
+    <div class="note">🔬 <b>Read:</b> Sunday's legs are individually safer (58.3% avg vs 44.7%) but there are ten of them — multiplication is undefeated. Thursday needed fewer miracles per leg and got every single one anyway.</div>
+  </div>
+</section>
+
+<!-- ============ WATERFALL ============ -->
+<section id="water" class="page">
+  <div class="ticket">
+    <div class="ticket-top"><h2>🌊 Waterfall — how 100% becomes 0.34%</h2><div class="odds-big" style="font-size:18px">Sunday · most-certain first</div></div>
+    <p style="color:var(--dim);font-size:14px">Each row multiplies the running ticket probability by that leg's model hit rate. The 🔒 column shows where the ticket would stand if that leg were automatic — that's <b>leverage</b>.</p>
+    <table class="rank">
+      <tr><th>#</th><th>Leg</th><th>Model</th><th>Ticket prob</th><th style="min-width:110px"></th><th>If lock 🔒</th></tr>
+      <tr><td class="mono">1</td><td><b>Jefferson 60+ rec</b></td><td class="mono">74%</td><td class="mono">74.00%</td><td><div class="bar"><i style="width:74%;background:var(--blue)"></i></div></td><td class="mono">0.46% (×1.35)</td></tr>
+      <tr><td class="mono">2</td><td><b>DEN +3.5</b></td><td class="mono">72%</td><td class="mono">53.28%</td><td><div class="bar"><i style="width:53%;background:var(--blue)"></i></div></td><td class="mono">0.47% (×1.39)</td></tr>
+      <tr><td class="mono">3</td><td><b>CMC 50+ rush</b></td><td class="mono">70%</td><td class="mono">37.30%</td><td><div class="bar"><i style="width:37%;background:var(--blue)"></i></div></td><td class="mono">0.48% (×1.43)</td></tr>
+      <tr><td class="mono">4</td><td><b>Hurts 25+ rush</b></td><td class="mono">63%</td><td class="mono">23.50%</td><td><div class="bar"><i style="width:24%;background:var(--blue)"></i></div></td><td class="mono">0.54% (×1.59)</td></tr>
+      <tr><td class="mono">5</td><td><b>Bijan 80+ rush</b></td><td class="mono">60%</td><td class="mono">14.10%</td><td><div class="bar"><i style="width:14%;background:var(--purple)"></i></div></td><td class="mono">0.56% (×1.67)</td></tr>
+      <tr><td class="mono">6</td><td><b>Pickens 60+ rec</b></td><td class="mono">58%</td><td class="mono">8.18%</td><td><div class="bar"><i style="width:8%;background:var(--purple)"></i></div></td><td class="mono">0.58% (×1.72)</td></tr>
+      <tr><td class="mono">7</td><td><b>Saquon anytime TD</b></td><td class="mono">56%</td><td class="mono">4.58%</td><td><div class="bar"><i style="width:5%;background:var(--purple)"></i></div></td><td class="mono">0.60% (×1.79)</td></tr>
+      <tr><td class="mono">8</td><td><b>Ward under 185.5</b></td><td class="mono">56%</td><td class="mono">2.56%</td><td><div class="bar"><i style="width:3%;background:var(--red)"></i></div></td><td class="mono">0.60% (×1.79)</td></tr>
+      <tr><td class="mono">9</td><td><b>Concepcion 4+ rec</b></td><td class="mono">44%</td><td class="mono">1.13%</td><td><div class="bar"><i style="width:2%;background:var(--red)"></i></div></td><td class="mono">0.77% (×2.27)</td></tr>
+      <tr><td class="mono">10</td><td><b>Shough over 1.5 TDs</b></td><td class="mono">30%</td><td class="mono"><b>0.34%</b></td><td><div class="bar"><i style="width:2%;background:var(--red)"></i></div></td><td class="mono">1.13% (×3.33)</td></tr>
+    </table>
+    <div class="note">💡 <b>The takeaway:</b> the first five legs only get you down to 14%. The last three (Ward, Concepcion, Shough) do nearly all the killing. In parlays the tail wags the dog — then the dog dies. Shough alone carries a <b>×3.33 leverage</b>: make him a lock and the ticket triples.</div>
+  </div>
+
+  <div class="ticket">
+    <div class="ticket-top"><h2>🌊 Thursday waterfall <span style="font-size:14px;color:var(--green)">— it survived</span></h2><div class="odds-big" style="font-size:18px">7/7, somehow</div></div>
+    <table class="rank">
+      <tr><th>#</th><th>Leg</th><th>Model</th><th>Ticket prob</th><th style="min-width:110px"></th></tr>
+      <tr><td class="mono">1</td><td><b>Allen o31.5 rush</b></td><td class="mono">58%</td><td class="mono">58.00%</td><td><div class="bar"><i style="width:58%;background:var(--blue)"></i></div></td></tr>
+      <tr><td class="mono">2</td><td><b>Cook anytime TD</b></td><td class="mono">52%</td><td class="mono">30.16%</td><td><div class="bar"><i style="width:30%;background:var(--blue)"></i></div></td></tr>
+      <tr><td class="mono">3</td><td><b>Kincaid 50+ rec</b></td><td class="mono">48%</td><td class="mono">14.48%</td><td><div class="bar"><i style="width:14%;background:var(--purple)"></i></div></td></tr>
+      <tr><td class="mono">4</td><td><b>Hutchinson sack</b></td><td class="mono">45%</td><td class="mono">6.51%</td><td><div class="bar"><i style="width:7%;background:var(--purple)"></i></div></td></tr>
+      <tr><td class="mono">5</td><td><b>LaPorta anytime TD</b></td><td class="mono">40%</td><td class="mono">2.61%</td><td><div class="bar"><i style="width:3%;background:var(--red)"></i></div></td></tr>
+      <tr><td class="mono">6</td><td><b>Vaki 5+ rush</b></td><td class="mono">35%</td><td class="mono">0.91%</td><td><div class="bar"><i style="width:2%;background:var(--red)"></i></div></td></tr>
+      <tr><td class="mono">7</td><td><b>Chubb sack</b></td><td class="mono">35%</td><td class="mono"><b>0.32% ✅</b></td><td><div class="bar"><i style="width:2%;background:var(--green)"></i></div></td></tr>
+    </table>
+    <div class="note">🏆 Every row below 15% and they all hit. Frame this waterfall.</div>
+  </div>
+
+  <div class="simbox">
+    <h3>🎰 Monte Carlo Sundays</h3>
+    <p style="color:var(--dim);font-size:14px;margin-bottom:14px">Simulate 10,000 Sundays with the model's leg probabilities. See how often $26K hits — and which leg plays executioner most often.</p>
+    <button onclick="sim()">Run 10,000 Sundays</button>
+    <div id="simout" style="margin-top:16px"></div>
   </div>
 </section>
 
@@ -460,6 +571,33 @@ function show(id){
   document.querySelectorAll('nav.tabs button').forEach(b=>b.classList.remove('active'));
   event.target.classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
+}
+function go(id){
+  document.querySelectorAll('section.page').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('nav.tabs button').forEach(b=>{
+    b.classList.toggle('active', b.getAttribute('onclick')===("show('"+id+"')"));
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+const SUN_LEGS=[["Shough over 1.5 TDs",.30],["Concepcion 4+ rec",.44],["Saquon anytime TD",.56],["Ward under 185.5",.56],["Pickens 60+ rec",.58],["Bijan 80+ rush",.60],["Hurts 25+ rush",.63],["CMC 50+ rush",.70],["DEN +3.5",.72],["Jefferson 60+ rec",.74]];
+function sim(){
+  const N=10000; let cash=0; const bust={}; SUN_LEGS.forEach(l=>bust[l[0]]=0);
+  for(let i=0;i<N;i++){
+    const order=[...SUN_LEGS].sort(()=>Math.random()-.5);
+    let dead=null;
+    for(const [n,p] of order){ if(Math.random()>p){dead=n;break;} }
+    if(dead) bust[dead]++; else cash++;
+  }
+  const rate=(cash/N*100).toFixed(2);
+  const evn=cash/N*26244.47-100;
+  const rows=Object.entries(bust).sort((a,b)=>b[1]-a[1]).map(([n,c])=>{
+    const pct=(c/N*100).toFixed(1);
+    return `<div class="bustrow"><span class="bn">🔪 ${n}</span><div class="bt"><i style="width:${pct}%"></i></div><span class="bv">${pct}%</span></div>`;
+  }).join("");
+  document.getElementById("simout").innerHTML=
+    `<div class="verdict mid" style="margin-top:0"><b>${cash.toLocaleString()} cashes</b> in 10,000 Sundays (${rate}% — model says 0.34%). Simulated ticket EV: <b>${evn>=0?"+":""}${evn.toFixed(2)}</b> per $100. Executioner leaderboard below.</div>`+rows+
+    `<p style="color:var(--dim2);font-size:12.5px;margin-top:10px">Thursday did this in real life. Once. For $12,328.17.</p>`;
 }
 </script>
 </body>
