@@ -100,6 +100,7 @@ section.page.active{display:block;animation:rise .45s cubic-bezier(.2,.7,.3,1)}
 .tag{position:absolute;top:14px;right:14px;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px}
 .tag.win{background:rgba(34,224,122,.15);color:var(--green);border:1px solid rgba(34,224,122,.4)}
 .tag.pend{background:rgba(255,209,102,.12);color:var(--gold);border:1px solid rgba(255,209,102,.4);animation:pulse 2.4s infinite}
+.tag.void{background:rgba(120,140,200,.12);color:var(--dim);border:1px solid rgba(120,140,200,.4)}
 .dualb{margin:10px 0 6px}
 .dualb .row{display:flex;align-items:center;gap:10px;margin:7px 0}
 .dualb .lbl{width:58px;font-size:11px;color:var(--dim2);text-transform:uppercase;letter-spacing:.08em;font-weight:600}
@@ -244,11 +245,12 @@ footer .sig{font-family:var(--font-d);color:var(--dim);font-size:13px}
   <div class="kicker">Gambling Rollover Ninjas · Degenerate <b>Quant</b> Model</div>
   <h1><span class="em">🥷</span> <span class="gt">GAMBLING NINJA TRACKER</span></h1>
   <p class="sub">Week 2 of the great experiment: every group-chat parlay, graded like a lab experiment and roasted like a group chat. Probabilities estimated, edges measured, dignity not guaranteed.</p>
-  <div class="record-pill"><span>WEEK 2</span><span>TICKETS <b>1–1</b></span><span>PROFIT <b>+$12,178.17</b></span><span class="pend">SUNDAY $100 LOST</span></div>
+  <div class="record-pill"><span>WEEK 2</span><span>TICKETS <b>1–2</b></span><span>PROFIT <b>+$12,178.17</b></span><span class="pend">SUNDAY 0–2 · $100 CASH + $100 BONUS LOST</span></div>
 </header>
 
 <nav class="tabs">
-  <button class="active" onclick="show('sun')">Sun 9/20 · The Gauntlet <span class="latest">LATEST</span></button>
+  <button class="active" onclick="show('snf')">Sun 9/20 · The JT Bet <span class="latest">LATEST</span></button>
+  <button onclick="show('sun')">Sun 9/20 · The Gauntlet</button>
   <button onclick="show('thu')">Thu 9/17 · The Miracle</button>
   <button onclick="show('rank')">Stack Rank</button>
   <button onclick="show('matrix')">Matrix</button>
@@ -257,6 +259,89 @@ footer .sig{font-family:var(--font-d);color:var(--dim);font-size:13px}
   <button onclick="show('ninjas')">🥷 Ninjas</button>
   <button onclick="show('book')">🥷 Beat the Book</button>
 </nav>
+
+<!-- ============ SNF: THE JT BET ============ -->
+<section id="snf" class="page active">
+  <div class="ticket">
+    <div class="ticket-top">
+      <h2>🌙 Week 2 — Sunday Night: The JT Bet</h2>
+      <div class="odds-big">+20967</div>
+    </div>
+    <div class="meta">
+      <span class="chip">📅 Sun Sep 20 · SNF</span>
+      <span class="chip">🎟️ 9-leg Same Game Parlay</span>
+      <span class="chip">🎁 Stake <b>$100.00 BONUS BET</b> (no cash)</span>
+      <span class="chip">🛡️ Bet Protect+</span>
+      <span class="chip">💰 To win <b>~$20,967</b></span>
+      <span class="chip" style="color:var(--red)">💀 DEAD — Rice 1 catch short</span>
+    </div>
+    <div class="verdict bad">
+      <b>🔬 POST-MORTEM: one catch.</b> Final tally: <b>7 HIT / 1 MISS / 1 VOID</b> — eight of nine legs did their job and the ticket still died, because Rashee Rice finished with <b>4 receptions against a 4.5 line</b>. One more catch and a free $100 bonus bet becomes ~$21K. The cruelty is the point: this was, by the model, the <b>best-priced ticket in group history</b> (1.73% true vs 0.475% implied), and it lost by the smallest possible margin in the sport.
+    </div>
+    <div class="verdict mid">
+      <b>The protection actually worked — once.</b> Alec Pierce's leg voided cleanly on the injury cover (Bet Protect+), the first time all season the shield did its job instead of generating theater. It didn't matter. When the ticket dies, it dies on a healthy scratch of a stat line, not an injury report.</div>
+
+    <div class="legs">
+
+      <div class="leg pos"><span class="tag win">✅ HIT</span>
+        <h3>Jonathan Taylor 70+ rushing yards (alt)</h3><div class="match">IND @ KC · SNF — finished with 92 yds</div>
+        <div class="nums"><div><span>Model prob</span><span class="up">65%</span></div><div><span>Picker</span>TBD 🥷</div></div>
+        <div class="roast"><b>The namesake delivers.</b> 92 yards, cleared by 22. JT did exactly what the ticket was named after him for doing. No notes.</div>
+      </div>
+
+      <div class="leg pos"><span class="tag win">✅ HIT</span>
+        <h3>Kenneth Walker III over 82.5 rushing yards</h3><div class="match">KC · SNF — finished with 117 yds</div>
+        <div class="nums"><div><span>Model prob</span><span class="up">52%</span></div><div><span>Picker</span>TBD 🥷</div></div>
+        <div class="roast"><b>Cleared by 34.5.</b> The highest rushing bar on the ticket and Walker treated it like a suggestion. Lowest model prob of the night — highest style points.</div>
+      </div>
+
+      <div class="leg pos"><span class="tag win">✅ HIT</span>
+        <h3>Patrick Mahomes 15+ rushing yards (alt)</h3><div class="match">KC · SNF — finished with 17 yds</div>
+        <div class="nums"><div><span>Model prob</span><span class="up">70%</span></div><div><span>Picker</span>TBD 🥷</div></div>
+        <div class="roast"><b>Two yards of margin.</b> 17 yards on a 15 line. Mahomes scrambled exactly enough and not one blade of grass more. Vintage.</div>
+      </div>
+
+      <div class="leg pos"><span class="tag win">✅ HIT</span>
+        <h3>Daniel Jones over 8.5 rushing yards</h3><div class="match">IND @ KC · SNF — finished with 10 yds</div>
+        <div class="nums"><div><span>Model prob</span><span class="up">72%</span></div><div><span>Picker</span>TBD 🥷</div></div>
+        <div class="roast"><b>10 yards. The bar was 8.5.</b> Danny Dimes scrambled just enough to matter and just little enough to keep everyone nervous. The free square that wasn't.</div>
+      </div>
+
+      <div class="leg pos"><span class="tag win">✅ HIT</span>
+        <h3>Josh Downs 4+ receptions (alt)</h3><div class="match">IND @ KC · SNF — finished with 7 rec</div>
+        <div class="nums"><div><span>Model prob</span><span class="up">68%</span></div><div><span>Picker</span>TBD 🥷</div></div>
+        <div class="roast"><b>7 catches, nearly doubled it.</b> The alt-line discount at work: take the 4+ instead of the 5.5 and sleep through the fourth quarter. Somebody in this chat understands pricing.</div>
+      </div>
+
+      <div class="leg pos"><span class="tag win">✅ HIT</span>
+        <h3>Tyler Warren under 16.5 longest reception</h3><div class="match">IND @ KC · SNF — longest was 8 yds</div>
+        <div class="nums"><div><span>Model prob</span><span class="up">65%</span></div><div><span>Picker</span>TBD 🥷</div></div>
+        <div class="roast"><b>Longest catch: 8 yards.</b> Needed under 16.5 and Warren never threatened it. The under that felt like an over the whole drive. Beautiful.</div>
+      </div>
+
+      <div class="leg pos"><span class="tag win">✅ HIT</span>
+        <h3>Chiefs over 24.5 team total (alt)</h3><div class="match">KC · SNF — scored 33 (won 33–30)</div>
+        <div class="nums"><div><span>Model prob</span><span class="up">72%</span></div><div><span>Picker</span>TBD 🥷</div></div>
+        <div class="roast"><b>33 points in a 33–30 final.</b> The only leg rooting for the scoreboard instead of a stat line. Cleared by 8.5 while the game went down to the wire. Poetry.</div>
+      </div>
+
+      <div class="leg"><span class="tag void">➖ VOID</span>
+        <h3>Alec Pierce over 2.5 receptions</h3><div class="match">IND @ KC · SNF — 1 rec, injury covered</div>
+        <div class="nums"><div><span>Model prob</span>55%</div><div><span>Picker</span>TBD 🥷</div></div>
+        <div class="roast"><b>The shield works.</b> One catch, then the injury — Bet Protect+ voided it cleanly instead of grading a loss. First time all season the protection did its job. Shame about the rest of the ticket.</div>
+      </div>
+
+      <div class="leg neg"><span class="tag inj">❌ MISS</span>
+        <h3>Rashee Rice over 4.5 receptions</h3><div class="match">KC · SNF — finished with 4 rec</div>
+        <div class="nums"><div><span>Model prob</span><span class="down">58%</span></div><div><span>Picker</span>TBD 🥷</div></div>
+        <div class="roast"><b>Four. Catches. Needed five.</b> One reception short of ~$21,000. Rice will catch 5+ next week and nobody will care, because this week he caught 4 and it cost the group a five-figure night. The executioner wears #4.</div>
+      </div>
+
+    </div>
+    <div class="note">📝 <b>Lab note:</b> per-leg odds weren't logged before kickoff, so model probabilities above are estimates (same convention as the Thursday tab). The ticket was a <b>$100 bonus bet</b> — no cash left the bankroll, so Week 2 cash profit holds at +$12,178.17. Bet ID us-ny:01m30faptxegprtnnhh74bfdr9h · placed 9/20 6:35PM ET.</div>
+    <div class="qnav"><button onclick="go('sun')">← Sunday Gauntlet</button><button onclick="go('matrix')">The Matrix →</button></div>
+  </div>
+</section>
 
 <!-- ============ THURSDAY ============ -->
 <section id="thu" class="page">
@@ -329,7 +414,7 @@ footer .sig{font-family:var(--font-d);color:var(--dim);font-size:13px}
 </section>
 
 <!-- ============ SUNDAY ============ -->
-<section id="sun" class="page active">
+<section id="sun" class="page">
   <div class="ticket">
     <div class="ticket-top">
       <h2>⚔️ Week 2 — Sunday: The Gauntlet</h2>
@@ -546,7 +631,7 @@ footer .sig{font-family:var(--font-d);color:var(--dim);font-size:13px}
       <div class="slot"><div class="t">4:26 PM ET</div><div class="g">The nightcap double: Pickens (WAS@DAL) + CMC (MIA@SF). Two legs, one dream, $26,244.47. Do not watch alone.</div></div>
     </div>
     <div class="note">🔬 <b>Post-mortem ledger:</b> the cash-out offer peaked at exactly <b>$100.00</b> — the books ran the numbers and concluded your ticket was worth what you paid. They were right. Week 2 closes <b>1–1</b>, profit <b>+$12,178.17</b>. The Miracle covers a multitude of Gauntlets. 🥷</div>
-    <div class="qnav"><button onclick="go('thu')">← Thursday Miracle</button><button onclick="go('water')">Waterfall →</button></div>
+    <div class="qnav"><button onclick="go('thu')">← Thursday Miracle</button><button onclick="go('snf')">SNF JT Bet →</button><button onclick="go('water')">Waterfall →</button></div>
   </div>
 </section>
 
@@ -585,13 +670,30 @@ footer .sig{font-family:var(--font-d);color:var(--dim);font-size:13px}
     </table>
     <div class="note">🎲 <b>Seven for seven</b> on legs the model gave a combined <b>0.32%</b> (about 1-in-313). Every single leg below 60% and they all hit. Statisticians call this "variance." The group chat calls it "we're him."</div>
   </div>
+
+  <div class="ticket">
+    <div class="ticket-top"><h2>🌙 Stack Rank — SNF JT Bet</h2><div class="odds-big" style="font-size:18px">by model prob (odds not logged)</div></div>
+    <table class="rank">
+      <tr><th>#</th><th>Leg</th><th>Result</th><th>Model</th><th style="min-width:140px">Prob bar</th></tr>
+      <tr><td class="mono">1</td><td><b>Daniel Jones o8.5 rush yds</b> <span style="color:var(--dim2)">(10 actual)</span></td><td class="pos-t">✅</td><td class="mono">72%</td><td><div class="bar"><i style="width:72%;background:var(--blue)"></i></div></td></tr>
+      <tr><td class="mono">1</td><td><b>Chiefs o24.5 team total</b> <span style="color:var(--dim2)">(33 actual)</span></td><td class="pos-t">✅</td><td class="mono">72%</td><td><div class="bar"><i style="width:72%;background:var(--blue)"></i></div></td></tr>
+      <tr><td class="mono">3</td><td><b>Mahomes 15+ rush yds</b> <span style="color:var(--dim2)">(17 actual)</span></td><td class="pos-t">✅</td><td class="mono">70%</td><td><div class="bar"><i style="width:70%;background:var(--blue)"></i></div></td></tr>
+      <tr><td class="mono">4</td><td><b>Josh Downs 4+ rec</b> <span style="color:var(--dim2)">(7 actual)</span></td><td class="pos-t">✅</td><td class="mono">68%</td><td><div class="bar"><i style="width:68%;background:var(--blue)"></i></div></td></tr>
+      <tr><td class="mono">5</td><td><b>JT 70+ rush yds</b> <span style="color:var(--dim2)">(92 actual)</span></td><td class="pos-t">✅</td><td class="mono">65%</td><td><div class="bar"><i style="width:65%;background:var(--blue)"></i></div></td></tr>
+      <tr><td class="mono">5</td><td><b>Warren u16.5 long rec</b> <span style="color:var(--dim2)">(8 actual)</span></td><td class="pos-t">✅</td><td class="mono">65%</td><td><div class="bar"><i style="width:65%;background:var(--blue)"></i></div></td></tr>
+      <tr><td class="mono">7</td><td><b>Rashee Rice o4.5 rec</b> <span style="color:var(--dim2)">(4 actual)</span></td><td class="neg-t">❌</td><td class="mono">58%</td><td><div class="bar"><i style="width:58%;background:var(--red)"></i></div></td></tr>
+      <tr><td class="mono">8</td><td><b>Alec Pierce o2.5 rec</b> <span style="color:var(--dim2)">(void, inj)</span></td><td style="color:var(--dim2)">➖</td><td class="mono">55%</td><td><div class="bar"><i style="width:55%;background:var(--dim2)"></i></div></td></tr>
+      <tr><td class="mono">9</td><td><b>K. Walker o82.5 rush yds</b> <span style="color:var(--dim2)">(117 actual)</span></td><td class="pos-t">✅</td><td class="mono">52%</td><td><div class="bar"><i style="width:52%;background:var(--green)"></i></div></td></tr>
+    </table>
+    <div class="note">🔪 <b>The executioner ranked 7th of 9.</b> Not the riskiest leg, not the safest — a 58% coin flip in the middle of the board. That's the thing about 9-leggers: you don't need the worst leg to kill you. Any leg will do.</div>
+  </div>
 </section>
 
 <!-- ============ MATRIX ============ -->
 <section id="matrix" class="page">
   <div class="ticket">
-    <div class="ticket-top"><h2>🧮 The Matrix — every leg, every number</h2><div class="odds-big" style="font-size:18px">17 legs · 0 hiding</div></div>
-    <p style="color:var(--dim);font-size:14px">One dense table, both tickets. Scroll sideways on your phone like a degenerate Bloomberg terminal. <span style="color:var(--dim2)">*</span> = estimated standalone (book only posted the bundle). Results: ✅ hit · ❌ miss · 🔴 live. Saquon's void scare was moot — he returned in Q3 and the leg graded a straight miss.</p>
+    <div class="ticket-top"><h2>🧮 The Matrix — every leg, every number</h2><div class="odds-big" style="font-size:18px">26 legs · 0 hiding</div></div>
+    <p style="color:var(--dim);font-size:14px">One dense table, three tickets. Scroll sideways on your phone like a degenerate Bloomberg terminal. <span style="color:var(--dim2)">*</span> = estimated standalone (book only posted the bundle). Results: ✅ hit · ❌ miss · ➖ void · 🔴 live. Saquon's void scare was moot — he returned in Q3 and the leg graded a straight miss.</p>
     <div style="overflow-x:auto">
     <table class="rank mtable">
       <tr><th>Wk</th><th>Leg</th><th>Odds</th><th>Impl.</th><th>Model</th><th>Edge</th><th>EV/$100</th><th>Bust</th><th>Res</th></tr>
@@ -605,6 +707,15 @@ footer .sig{font-family:var(--font-d);color:var(--dim);font-size:13px}
       <tr><td class="mono">S</td><td><b>Pickens 60+ rec yds</b></td><td class="mono">−152</td><td class="mono">60.3%</td><td class="mono">58.0%</td><td class="mono neg-t">−2.32</td><td class="mono neg-t">−$3.84</td><td class="mono">42.0%</td><td>🔴</td></tr>
       <tr><td class="mono">S</td><td><b>Concepcion 4+ rec</b></td><td class="mono">+110</td><td class="mono">47.6%</td><td class="mono">44.0%</td><td class="mono neg-t">−3.62</td><td class="mono neg-t">−$7.60</td><td class="mono">56.0%</td><td class="pos-t">✅</td></tr>
       <tr><td class="mono">S</td><td><b>Shough over 1.5 TDs</b></td><td class="mono">+195</td><td class="mono">33.9%</td><td class="mono">30.0%</td><td class="mono neg-t">−3.90</td><td class="mono neg-t">−$11.50</td><td class="mono">70.0%</td><td class="neg-t">❌</td></tr>
+      <tr><td class="mono">N</td><td><b>Daniel Jones o8.5 rush yds</b> <span style="color:var(--dim2)">(10 actual)</span></td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">72%</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">28%</td><td class="pos-t">✅</td></tr>
+      <tr><td class="mono">N</td><td><b>Chiefs o24.5 team total</b> <span style="color:var(--dim2)">(33 actual)</span></td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">72%</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">28%</td><td class="pos-t">✅</td></tr>
+      <tr><td class="mono">N</td><td><b>Mahomes 15+ rush yds</b> <span style="color:var(--dim2)">(17 actual)</span></td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">70%</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">30%</td><td class="pos-t">✅</td></tr>
+      <tr><td class="mono">N</td><td><b>Josh Downs 4+ rec</b> <span style="color:var(--dim2)">(7 actual)</span></td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">68%</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">32%</td><td class="pos-t">✅</td></tr>
+      <tr><td class="mono">N</td><td><b>JT 70+ rush yds</b> <span style="color:var(--dim2)">(92 actual)</span></td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">65%</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">35%</td><td class="pos-t">✅</td></tr>
+      <tr><td class="mono">N</td><td><b>Warren u16.5 long rec</b> <span style="color:var(--dim2)">(8 actual)</span></td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">65%</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">35%</td><td class="pos-t">✅</td></tr>
+      <tr><td class="mono">N</td><td><b>Rashee Rice o4.5 rec</b> <span style="color:var(--dim2)">(4 actual)</span></td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">58%</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">42%</td><td class="neg-t">❌</td></tr>
+      <tr><td class="mono">N</td><td><b>Alec Pierce o2.5 rec</b> <span style="color:var(--dim2)">(void, inj)</span></td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">55%</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">45%</td><td style="color:var(--dim2)">➖</td></tr>
+      <tr><td class="mono">N</td><td><b>K. Walker o82.5 rush yds</b> <span style="color:var(--dim2)">(117 actual)</span></td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">52%</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">48%</td><td class="pos-t">✅</td></tr>
       <tr><td class="mono">T</td><td><b>Allen o31.5 rush yds</b></td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">58%</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">42%</td><td class="pos-t">✅</td></tr>
       <tr><td class="mono">T</td><td><b>Cook anytime TD</b></td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">52%</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">48%</td><td class="pos-t">✅</td></tr>
       <tr><td class="mono">T</td><td><b>Kincaid 50+ rec yds</b></td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">48%</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono" style="color:var(--dim2)">—</td><td class="mono">52%</td><td class="pos-t">✅</td></tr>
@@ -618,21 +729,21 @@ footer .sig{font-family:var(--font-d);color:var(--dim);font-size:13px}
   </div>
 
   <div class="ticket">
-    <div class="ticket-top"><h2>⚖️ Ticket vs Ticket</h2><div class="odds-big" style="font-size:18px">Week 2, both barrels</div></div>
+    <div class="ticket-top"><h2>⚖️ Ticket vs Ticket</h2><div class="odds-big" style="font-size:18px">Week 2, three barrels</div></div>
     <table class="rank">
-      <tr><th>Metric</th><th>Thu 9/17 · Miracle</th><th>Sun 9/20 · Gauntlet</th></tr>
-      <tr><td>Legs</td><td class="mono">7</td><td class="mono">10</td></tr>
-      <tr><td>Stake</td><td class="mono">$50.00</td><td class="mono">$100.00</td></tr>
-      <tr><td>Ticket odds</td><td class="mono">+24556</td><td class="mono">+26144</td></tr>
-      <tr><td>Max payout</td><td class="mono">$12,328.17</td><td class="mono">$26,244.47</td></tr>
-      <tr><td>Board implied</td><td class="mono">0.406% · 1-in-247</td><td class="mono">0.381% · 1-in-262</td></tr>
-      <tr><td>Model prob</td><td class="mono">0.319% · 1-in-313</td><td class="mono">0.339% · 1-in-295</td></tr>
-      <tr><td>Model edge</td><td class="mono neg-t">−0.09pp</td><td class="mono neg-t">−0.04pp</td></tr>
-      <tr><td>Ticket EV</td><td class="mono neg-t">−$10.65</td><td class="mono neg-t">−$11.17</td></tr>
-      <tr><td>Avg leg model</td><td class="mono">44.7%</td><td class="mono">58.3%</td></tr>
-      <tr><td>Result</td><td class="pos-t"><b>✅ 7/7 · +$12,278.17</b></td><td class="neg-t"><b>❌ DEAD · −$100.00</b></td></tr>
+      <tr><th>Metric</th><th>Thu 9/17 · Miracle</th><th>Sun 9/20 · Gauntlet</th><th>Sun 9/20 · JT Bet</th></tr>
+      <tr><td>Legs</td><td class="mono">7</td><td class="mono">10</td><td class="mono">9</td></tr>
+      <tr><td>Stake</td><td class="mono">$50.00</td><td class="mono">$100.00</td><td class="mono">$100.00 bonus</td></tr>
+      <tr><td>Ticket odds</td><td class="mono">+24556</td><td class="mono">+26144</td><td class="mono">+20967</td></tr>
+      <tr><td>Max payout</td><td class="mono">$12,328.17</td><td class="mono">$26,244.47</td><td class="mono">$20,967.00</td></tr>
+      <tr><td>Board implied</td><td class="mono">0.406% · 1-in-247</td><td class="mono">0.381% · 1-in-262</td><td class="mono">0.475% · 1-in-211</td></tr>
+      <tr><td>Model prob</td><td class="mono">0.319% · 1-in-313</td><td class="mono">0.339% · 1-in-295</td><td class="mono">1.73% · 1-in-58</td></tr>
+      <tr><td>Model edge</td><td class="mono neg-t">−0.09pp</td><td class="mono neg-t">−0.04pp</td><td class="mono pos-t">+1.25pp</td></tr>
+      <tr><td>Ticket EV</td><td class="mono neg-t">−$10.65</td><td class="mono neg-t">−$11.17</td><td class="mono pos-t">+$362.60*</td></tr>
+      <tr><td>Avg leg model</td><td class="mono">44.7%</td><td class="mono">58.3%</td><td class="mono">64.1%</td></tr>
+      <tr><td>Result</td><td class="pos-t"><b>✅ 7/7 · +$12,278.17</b></td><td class="neg-t"><b>❌ DEAD · −$100.00</b></td><td class="neg-t"><b>❌ DEAD · $0 cash lost</b></td></tr>
     </table>
-    <div class="note">🔬 <b>Read:</b> Sunday's legs are individually safer (58.3% avg vs 44.7%) but there are ten of them — multiplication is undefeated. Thursday needed fewer miracles per leg and got every single one anyway.</div>
+    <div class="note">🔬 <b>Read:</b> Sunday's legs are individually safer (58.3% avg vs 44.7%) but there are ten of them — multiplication is undefeated. Thursday needed fewer miracles per leg and got every single one anyway. The SNF ticket is the plot twist: <b>best-priced ticket in group history</b> (+1.25pp edge, +$362.60 EV) and it still died on a single catch. <span style="color:var(--dim2)">*SNF EV is per $100 of bonus funds — no cash was staked, so the Week 2 cash profit is untouched.</span></div>
   </div>
 </section>
 
@@ -672,6 +783,23 @@ footer .sig{font-family:var(--font-d);color:var(--dim);font-size:13px}
     <div class="note">🏆 Every row below 15% and they all hit. Frame this waterfall.</div>
   </div>
 
+  <div class="ticket">
+    <div class="ticket-top"><h2>🌊 SNF waterfall <span style="font-size:14px;color:var(--red)">— died on one catch</span></h2><div class="odds-big" style="font-size:18px">9 legs · most-certain first</div></div>
+    <table class="rank">
+      <tr><th>#</th><th>Leg</th><th>Model</th><th>Ticket prob</th><th style="min-width:110px"></th><th>If lock 🔒</th></tr>
+      <tr><td class="mono">1</td><td><b>Daniel Jones o8.5 rush</b></td><td class="mono">72%</td><td class="mono">72.00%</td><td><div class="bar"><i style="width:72%;background:var(--blue)"></i></div></td><td class="mono">2.40% (×1.39)</td></tr>
+      <tr><td class="mono">2</td><td><b>Chiefs o24.5 team total</b></td><td class="mono">72%</td><td class="mono">51.84%</td><td><div class="bar"><i style="width:52%;background:var(--blue)"></i></div></td><td class="mono">2.40% (×1.39)</td></tr>
+      <tr><td class="mono">3</td><td><b>Mahomes 15+ rush</b></td><td class="mono">70%</td><td class="mono">36.29%</td><td><div class="bar"><i style="width:36%;background:var(--blue)"></i></div></td><td class="mono">2.47% (×1.43)</td></tr>
+      <tr><td class="mono">4</td><td><b>Josh Downs 4+ rec</b></td><td class="mono">68%</td><td class="mono">24.68%</td><td><div class="bar"><i style="width:25%;background:var(--blue)"></i></div></td><td class="mono">2.54% (×1.47)</td></tr>
+      <tr><td class="mono">5</td><td><b>JT 70+ rush</b></td><td class="mono">65%</td><td class="mono">16.04%</td><td><div class="bar"><i style="width:16%;background:var(--purple)"></i></div></td><td class="mono">2.66% (×1.54)</td></tr>
+      <tr><td class="mono">6</td><td><b>Warren u16.5 long rec</b></td><td class="mono">65%</td><td class="mono">10.43%</td><td><div class="bar"><i style="width:10%;background:var(--purple)"></i></div></td><td class="mono">2.66% (×1.54)</td></tr>
+      <tr><td class="mono">7</td><td><b>Rashee Rice o4.5 rec</b></td><td class="mono">58%</td><td class="mono"><b>6.05%</b></td><td><div class="bar"><i style="width:6%;background:var(--red)"></i></div></td><td class="mono">2.98% (×1.72)</td></tr>
+      <tr><td class="mono">8</td><td><b>Alec Pierce o2.5 rec</b></td><td class="mono">55%</td><td class="mono">3.33%</td><td><div class="bar"><i style="width:3%;background:var(--dim2)"></i></div></td><td class="mono">3.14% (×1.82)</td></tr>
+      <tr><td class="mono">9</td><td><b>K. Walker o82.5 rush</b></td><td class="mono">52%</td><td class="mono"><b>1.73%</b></td><td><div class="bar"><i style="width:2%;background:var(--green)"></i></div></td><td class="mono">3.33% (×1.92)</td></tr>
+    </table>
+    <div class="note">💡 <b>The takeaway:</b> six legs in, the ticket sat at 10.43% — roughly 1-in-10, unheard of for a +20967. Then Rice happened at row 7 and the waterfall goes red. Pierce's void (row 8) is the saddest row on this entire site: the protection worked and it didn't matter. 1.73% final — the best number the model has ever given a group ticket, attached to a loss.</div>
+  </div>
+
   <div class="simbox">
     <h3>🎰 Monte Carlo Sundays</h3>
     <p style="color:var(--dim);font-size:14px;margin-bottom:14px">Simulate 10,000 Sundays with the model's leg probabilities. See how often $26K hits — and which leg plays executioner most often.</p>
@@ -691,9 +819,10 @@ footer .sig{font-family:var(--font-d);color:var(--dim);font-size:13px}
         <tr><th>Ticket</th><th>Stake</th><th>Result</th><th>Profit</th></tr>
         <tr><td>Thu 9/17 · 7-leg props</td><td class="mono">$50.00</td><td class="pos-t"><b>W 7/7</b></td><td class="mono pos-t">+$12,278.17</td></tr>
         <tr><td>Sun 9/20 · 10-leg SGP+</td><td class="mono">$100.00</td><td class="neg-t"><b>L · 2/10</b></td><td class="mono neg-t">−$100.00</td></tr>
-        <tr><td><b>Settled total</b></td><td class="mono"><b>$150.00</b></td><td><b>1–1</b></td><td class="mono pos-t"><b>+$12,178.17</b></td></tr>
+        <tr><td>Sun 9/20 · SNF 9-leg SGP (bonus)</td><td class="mono">$100.00*</td><td class="neg-t"><b>L · 7/9, 1 void</b></td><td class="mono">$0.00</td></tr>
+        <tr><td><b>Settled total</b></td><td class="mono"><b>$250.00</b></td><td><b>1–2</b></td><td class="mono pos-t"><b>+$12,178.17</b></td></tr>
       </table>
-      <p style="margin-top:12px">One miracle banked, one gauntlet buried. Week 2 finishes 1–1, +$12,178.17 — still the most profitable week in group history, and the ledger stays honest about how it got there.</p>
+      <p style="margin-top:12px">One miracle banked, one gauntlet buried, one heartbreak voided-adjacent. Week 2 finishes 1–2, +$12,178.17 — still the most profitable week in group history, and the ledger stays honest about how it got there. <span style="color:var(--dim2)">*SNF stake was a $100 bonus bet: no cash risked, none lost.</span></p>
     </div>
 
     <div class="math">
@@ -717,6 +846,13 @@ footer .sig{font-family:var(--font-d);color:var(--dim);font-size:13px}
       <div class="formula">paid: +24556 ⇒ implied 0.406% ⇒ 1-in-247</div>
       <div class="formula">model: 0.319% ⇒ 1-in-313 ⇒ "fair" +31227 … retro EV = −$10.65 on $50</div>
       <p>Yes — the miracle ticket was <i>also</i> slightly −EV by the model, and it still turned $50 into $12,328.17. Two lessons, both true: (1) the model prices the board, not destiny; (2) if you never buy the ticket you can never hit the 1-in-313. Size accordingly, ninjas.</p>
+    </div>
+
+    <div class="math">
+      <h3>SNF retro-autopsy</h3>
+      <div class="formula">paid: +20967 ⇒ implied 0.475% ⇒ 1-in-211</div>
+      <div class="formula">model: 1.73% ⇒ 1-in-58 ⇒ "fair" +5682 … retro EV = +$362.60 per $100 of bonus funds</div>
+      <p>The only +EV ticket the group has ever logged — the board priced it like a lottery ticket while eight of nine legs were 55%+ propositions. And it still died on one catch. Lesson (3): positive EV is not a force field. Rashee Rice doesn't care about your edge.</p>
     </div>
 
     <div class="note">⚠️ <b>Methodology, honestly:</b> "model probabilities" are Muse's estimates blending market prices with matchup priors — a structured opinion with a calculator, not a quantitative model. They exist to rank legs and spark debate, not to size bets. Implied probabilities and EV math are exact. Send next week's ticket + picker names and the tracker grows. 🥷<br><br>Not financial advice. Obviously.</div>
@@ -860,7 +996,7 @@ footer .sig{font-family:var(--font-d);color:var(--dim);font-size:13px}
 
 <footer>
   Built by Muse · Degenerate Quant Model · for the Gambling Rollover Ninjas 🥷<br>
-  Data: group pick thread (Sep 18) + ticket screenshots (Sep 20) · Dow (631) ID'd — still need Thursday's 7 names + the mystery ninja behind the Bijan pick (734).<br>
+  Data: group pick thread (Sep 18) + ticket screenshots (Sep 20) · Dow (631) ID'd — still need Thursday's 7 names, the mystery ninja behind the Bijan pick (734), and the SNF JT-bet leg attributions.<br>
   Not financial advice. If you need this disclaimer explained, you shouldn't be betting 10-leg parlays.
 </footer>
 
